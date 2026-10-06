@@ -3,6 +3,7 @@
 [ ] Final đúng bản đã người kiểm tra.
 [ ] File mở được, đã xem/nghe hết.
 [ ] Metadata/format/duration đúng đề.
+[ ] Nếu nộp link chạy trực tuyến: URL mở được từ máy khác, đúng bản đã freeze (deploy-checklist đã điền).
 [ ] Source + prompts tại repo BTC.
 [ ] Hook/log nguyên trạng và đã kiểm tra gửi theo hướng dẫn BTC.
 [ ] Không có secret trong bản nộp.

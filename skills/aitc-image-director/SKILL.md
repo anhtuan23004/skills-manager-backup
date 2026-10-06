@@ -1,38 +1,38 @@
 ---
 name: aitc-image-director
-description: Thiết kế hướng thị giác, prompt và kiểm tra ảnh theo đề; dùng cho poster, key visual, bộ ảnh hoặc frame cho video.
+description: Use when a brief calls for visual direction, prompts and image review, such as posters, key visuals, image sets or frames for video.
 metadata:
   version: "2.0"
-  language: "vi"
+  language: "en"
   status: "prepared-not-btc-approved"
 ---
-# 06 — Chỉ đạo hình ảnh
+# 06 — Image direction
 
-Áp dụng [quy tắc chung](../../docs/TEAM_RULES.md); chỉ đọc lại khi chưa có trong ngữ cảnh hoặc quy tắc thay đổi.
+Apply the [shared rules](../../docs/TEAM_RULES.md) (written in Vietnamese); re-read them only if they are not already in context or the rules have changed.
 
-## Đầu vào
-Brief; concept; tỷ lệ/kích thước từ đề; danh sách text chuẩn; nguồn hình/nhân vật được phép.
+## Inputs
+Brief; concept; aspect ratio/size from the brief; approved text list; permitted image/character sources.
 
-## Quy trình
-1. Viết visual brief tối đa 8 dòng: thông điệp, chủ thể, bối cảnh, bố cục, màu/ánh sáng, khoảng trống, vùng chữ, điều phải tránh.
-2. Mỗi ảnh có một trọng tâm. Gắn các lựa chọn thị giác với thông điệp, không viết mỹ từ thay quyết định cụ thể.
-3. Bộ nhiều ảnh có consistency sheet: đặc điểm nhân vật, vật dụng, trang phục, style, palette, môi trường cố định. Tham chiếu phải được tạo trong phiên hoặc được BTC cho phép.
-4. Prompt tách subject / context / composition / visual language / lighting / constraints. Negative instruction trong prompt không có nghĩa API hỗ trợ một field negative_prompt.
-5. Chỉ dùng tham số đã được Gateway xác nhận; không tự thêm seed, reference array hay image editing endpoint vì nhà cung cấp gốc có hỗ trợ.
-6. Tạo một mẫu nhỏ trước, xem ảnh thật. Kiểm tra hình thể, chữ, chi tiết văn hóa, logo vô ý, thông điệp, khả năng đọc ở kích thước cuối.
-7. Tạo phiên bản sửa có kiểm soát; giữ bố cục đã đạt. Chữ tiếng Việt quan trọng kiểm tra từng ký tự; dùng lớp chữ biên tập nếu được phép.
-8. Lưu prompt, model, input reference, output ID, phiên bản được chọn và lý do. Không ghi một ảnh là đúng chỉ vì prompt đã yêu cầu đúng.
+## Process
+1. Write a visual brief of at most 8 lines: message, subject, setting, composition, color/lighting, empty space, text area, what to avoid.
+2. Give each image one focal point. Tie visual choices to the message; do not use flowery wording in place of concrete decisions.
+3. A multi-image set needs a consistency sheet: fixed character traits, props, costumes, style, palette, environment. References must be created in the session or permitted by BTC (the organizers).
+4. Split the prompt into subject / context / composition / visual language / lighting / constraints. A negative instruction in the prompt does not mean the API supports a negative_prompt field.
+5. Use only parameters confirmed by the Gateway; do not add seed, reference arrays or an image-editing endpoint on your own just because the original provider supports them.
+6. Generate a small sample first and look at the actual image. Check anatomy, text, cultural details, unintended logos, message, and legibility at final size.
+7. Generate controlled revisions; keep the composition that already works. Check important Vietnamese text character by character; use an editorial text layer if allowed.
+8. Record the prompt, model, input references, output ID, selected version and the reason. Do not mark an image as correct just because the prompt asked for the right thing.
 
-## Công cụ và kiểm chứng theo task
+## Tools and per-task verification
 
-Đọc [Image guide](../../docs/api-guides/03-image-generation.md) và [hướng dẫn thực thi](../../docs/SKILL_EXECUTION.md). Gọi endpoint tạo ảnh qua Gateway BTC theo schema được cung cấp; giải mã base64 và lưu ảnh vào workspace. Mở ảnh thực tế để kiểm tra và ghi bằng chứng theo requirement.
+Read the [Image guide](../../docs/api-guides/03-image-generation.md) and the [execution guide](../../docs/SKILL_EXECUTION.md). Call the image-generation endpoint through the BTC Gateway using the provided schema; decode base64 and save the image to the workspace. Open the actual image to check it and record evidence per requirement.
 
-## Đầu ra bắt buộc
-image-brief.md; prompt-Sxx.md; ảnh vNN; review vị trí lỗi; asset manifest.
+## Required outputs
+image-brief.md; prompt-Sxx.md; image vNN; review with error locations; asset manifest.
 
-## Kiểm tra trước khi trả kết quả
-Không dùng canvas-design nguyên bản để đặt sáng tạo cao hơn brief. Không dùng AI tích hợp Canva/Photoshop. Không đưa font file của nguồn tham khảo vào bộ toolkit.
+## Pre-return checks
+Do not use the original canvas-design to place creativity above the brief. Do not use AI built into Canva/Photoshop. Do not put font files from reference sources into the toolkit.
 
-## Dừng và chuyển người
-Thiếu dữ kiện quyết định/thiếu quyền/có mâu thuẫn luật: nêu rõ, không tự lấp chỗ trống.
-Đội trưởng quyết định; chỉ tiếp tục trong phạm vi đã duyệt.
+## Stop and hand off to a human
+Missing decisive information, missing permission, or a conflict with the rules: state it clearly and do not fill the gap yourself.
+The team leader decides; continue only within the approved scope.

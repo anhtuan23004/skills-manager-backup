@@ -1,13 +1,13 @@
-# Xây app theo đề
+# Build an app per the brief
 
-Chỉ đọc khi đề/người dùng yêu cầu app, API hoặc tương tác. Dùng cùng planner; đây là hướng dẫn thực thi trong agent hiện tại.
+Read only when the brief/user asks for an app, API, or interaction. Use together with the planner; this is execution guidance for the current agent.
 
-1. Từ requirements, viết luồng ngắn: input người dùng → xử lý/AI → output → tiêu chí đạt. Ghi rõ đầu ra nào cần demo, source hoặc deploy; chỉ thêm deploy khi được yêu cầu.
-2. Xem source có sẵn trước. Xây interface phù hợp: CLI cho batch/script, Streamlit cho panel demo, FastAPI khi cần HTTP API. UI riêng vẫn có thể xây trực tiếp trên Gateway; không ép mọi yêu cầu frontend vào Streamlit.
-3. Gọi API Gateway BTC trực tiếp theo [hướng dẫn API](../../../docs/api-guides/README.md) và [SKILL_EXECUTION](../../../docs/SKILL_EXECUTION.md). Khi đã có project, tích hợp vào code hiện tại; khi chưa có, tạo phần tối thiểu để chạy luồng của đề.
-4. Trong execution-plan, mỗi task có file cần sửa, hành vi cần có và test quan sát được. Ưu tiên một luồng input → output chạy xuyên suốt trước khi thêm trang/tính năng.
-5. Dùng payload/operation đúng [API guide](../../../docs/api-guides/README.md). Giữ key và live permission phía server; không đưa key vào JS trình duyệt. Mock transport trong test; không tự retry POST trả phí.
-6. Kiểm tra happy path, input rỗng/sai, timeout/lỗi Gateway và output artifact. UI cần chạy và thao tác thực trong trình duyệt khi môi trường có hỗ trợ; compile không thay runtime/browser test. Thiếu dependency thì ghi phần chưa kiểm chứng.
-7. Bàn giao lệnh chạy, cấu hình cần thiết, kết quả test, giới hạn còn lại. Tái dùng [final-qa](../../aitc-final-qa/SKILL.md) để đối chiếu mỗi requirement với evidence.
+1. From the requirements, write a short flow: user input → processing/AI → output → pass criteria. State which outputs need a demo, source, or deploy; add deploy only when the brief requires an online link, and when it does, create the task per [deploy-publisher](../../aitc-deploy-publisher/SKILL.md) from the first plan (get a skeleton onto a real link early, not at the end of the session).
+2. Inspect the existing source first. Build a suitable interface: CLI for batch/scripts, Streamlit for a demo panel, FastAPI when an HTTP API is needed. A custom UI can still be built directly on the Gateway; do not force every frontend requirement into Streamlit.
+3. Call the BTC Gateway API (BTC = the organizers) directly per the [API guide](../../../docs/api-guides/README.md) and [SKILL_EXECUTION](../../../docs/SKILL_EXECUTION.md). When a project already exists, integrate into the current code; when none exists, create the minimum needed to run the brief's flow.
+4. In the execution-plan, each task has the file to change, the required behavior, and an observable test. Prefer one input → output flow working end to end before adding pages/features.
+5. Use the exact payload/operation from the [API guide](../../../docs/api-guides/README.md). Keep the key and live permission server-side; never put the key in browser JS. Mock the transport in tests; do not auto-retry a paid POST.
+6. Check the happy path, empty/invalid input, timeout/Gateway errors, and the output artifact. A UI must be run and operated in a real browser when the environment supports it; compiling does not replace a runtime/browser test. If a dependency is missing, record what remains unverified.
+7. Hand over the run command, required configuration, test results, and remaining limitations. Reuse [final-qa](../../aitc-final-qa/SKILL.md) to match each requirement against evidence.
 
-Không thêm auth, database, queue hoặc vector database chỉ vì project mẫu có sẵn. Chỉ chọn khi yêu cầu hoặc dữ liệu/luồng thực tế cần. Agent xây các chức năng cần thiết từ plan và helper có sẵn.
+Do not add auth, a database, a queue, or a vector database just because the sample project has them. Choose them only when the requirements or the actual data/flow need them. The agent builds the necessary functions from the plan and the existing helpers.

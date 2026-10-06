@@ -1,34 +1,34 @@
 ---
 name: aitc-brief-decoder
-description: Phân tích nguyên văn đề, trích deliverable và rubric, ghi rõ chỗ chưa xác định; dùng ngay khi mở đề và khi BTC bổ sung yêu cầu.
+description: Use when a brief is first opened or when BTC (the organizers) add requirements; analyzes the verbatim brief, extracts deliverables and the rubric, and flags anything undetermined.
 metadata:
   version: "1.0"
-  language: "vi"
+  language: "en"
   status: "prepared-not-btc-approved"
 ---
-# 01 — Giải mã đề
+# 01 — Brief decoding
 
-Áp dụng [quy tắc chung](../../docs/TEAM_RULES.md); chỉ đọc lại khi chưa có trong ngữ cảnh hoặc quy tắc thay đổi.
+Apply the [shared rules](../../docs/TEAM_RULES.md) (written in Vietnamese); re-read them only if they are not already in context or the rules have changed.
 
-## Đầu vào
-Đề nguyên văn và tệp kèm theo; rubric chính thức nếu có; mốc thời gian và định dạng nộp.
+## Inputs
+The verbatim brief and attached files; the official rubric if available; deadlines and submission format.
 
-## Quy trình
-1. Đọc toàn bộ đề; xem hình/bảng khi parsed text không đầy đủ. Không coi các ví dụ trong tài liệu training là yêu cầu đề.
-2. Tách: đầu ra; người xem; mục tiêu/thông điệp; nguồn/tài sản được phép; thông số file; nội dung phải/không được có; tiêu chí chấm; cách nộp.
-3. Gán R01... cho từng yêu cầu. Mỗi mục có trích đoạn ngắn hoặc vị trí nguồn, cách kiểm tra và trạng thái.
-4. Đánh dấu OFFICIAL cho yêu cầu có nguồn, ASSUMPTION cho suy luận đội, PROPOSED cho tiêu chí nội bộ. Không suy ra trọng số từ tổ chức bảo trợ.
-5. Chọn loại bài: text, image, video, audio, kết hợp hoặc interactive nếu đề ghi. Đầu ra tối thiểu vẫn phải giữ mọi yêu cầu bắt buộc.
-6. Nêu tối đa 3 câu hỏi ảnh hưởng lớn; các điều chưa rõ không trọng yếu có thể chốt giả định có nhãn để tiếp tục.
-7. Viết một câu diễn giải đề và trình đội trưởng duyệt.
+## Process
+1. Read the entire brief; view images/tables when the parsed text is incomplete. Do not treat examples in training materials as brief requirements.
+2. Separate out: output; audience; goal/message; permitted sources/assets; file specs; must-have / must-not-have content; scoring criteria; how to submit.
+3. Assign R01... to each requirement. Each item has a short quote or source location, a way to check it, and a status.
+4. Mark OFFICIAL for sourced requirements, ASSUMPTION for team inferences, PROPOSED for internal criteria. Do not infer weights from the sponsoring organization.
+5. Choose the work type: text, image, video, audio, combined, or interactive if the brief says so. Even the minimal output must keep every mandatory requirement.
+6. Raise at most 3 high-impact questions; for non-critical unclear points, settle on a labeled assumption and continue.
+7. Write a one-sentence interpretation of the brief and submit it to the team leader for approval.
 
-## Đầu ra bắt buộc
-brief.md và requirements.csv: id, requirement, source, kind, check, owner, status, evidence.
-Một câu: Tạo [đầu ra] cho [đối tượng] để [mục đích] theo [ràng buộc].
+## Required outputs
+brief.md and requirements.csv: id, requirement, source, kind, check, owner, status, evidence.
+One sentence: Create [output] for [audience] to [purpose] under [constraints].
 
-## Kiểm tra trước khi trả kết quả
-Không nhầm video reflection 3–6 phút với video bài thi. Không tự tạo KPI, persona, dữ liệu hay thông số xuất. Không bỏ yêu cầu để kịp giờ mà vẫn ghi PASS.
+## Pre-return checks
+Do not confuse the 3–6 minute reflection video with the exam submission video. Do not invent KPIs, personas, data, or export specs. Do not drop a requirement to save time and still record PASS.
 
-## Dừng và chuyển người
-Thiếu dữ kiện quyết định/thiếu quyền/có mâu thuẫn luật: nêu rõ, không tự lấp chỗ trống.
-Đội trưởng quyết định; chỉ tiếp tục trong phạm vi đã duyệt.
+## Stop and hand off to a human
+Missing decisive information, missing permission, or a conflict with the rules: state it clearly; do not fill the gap yourself.
+The team leader decides; continue only within the approved scope.

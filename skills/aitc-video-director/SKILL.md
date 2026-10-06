@@ -1,39 +1,39 @@
 ---
 name: aitc-video-director
-description: Viết shot prompt, tạo video qua Gateway, theo dõi job và duy trì mạch hình; dùng khi đề yêu cầu video hoặc đoạn chuyển động.
+description: Use when a brief requires video or motion clips, to write shot prompts, generate video through the Gateway, track jobs and keep visual continuity.
 metadata:
   version: "2.0"
-  language: "vi"
+  language: "en"
   status: "prepared-not-btc-approved"
 ---
-# 07 — Chỉ đạo video
+# 07 — Video direction
 
-Áp dụng [quy tắc chung](../../docs/TEAM_RULES.md); chỉ đọc lại khi chưa có trong ngữ cảnh hoặc quy tắc thay đổi.
+Apply the [shared rules](../../docs/TEAM_RULES.md) (written in Vietnamese); re-read them only if they are not already in context or the rules have changed.
 
-## Đầu vào
-Storyboard đã duyệt; source frame; thời lượng/tỷ lệ đề; model/endpoint được test; trần chi phí.
+## Inputs
+Approved storyboard; source frames; duration/aspect ratio from the brief; tested model/endpoint; cost ceiling.
 
-## Quy trình
-1. Mỗi request tập trung một cảnh/một hành động. Sắp nhịp kể ở storyboard, không nhồi toàn bộ câu chuyện vào một clip ngắn.
-2. Tách chuyển động nhân vật, máy quay và môi trường. Với image-to-video ưu tiên mô tả chuyển động, không mô tả lại dài dòng những gì source frame đã thể hiện.
-3. Khóa chi tiết nhân vật/style qua reference và prompt, nhưng chỉ dùng tham số Gateway thực sự hỗ trợ; không bảo đảm consistency tuyệt đối.
-4. Thử cảnh rủi ro bằng cấu hình rẻ/ngắn đã được cấp. Ghi rõ seconds, không dựa mặc định.
-5. Quy trình video: create → lưu job ID ngay → poll đúng job → download khi completed. Khi processing không tạo lại job. Khi timeout sau POST, trạng thái có thể chưa xác định; hỏi leader, kiểm tra ledger/BTC trước khi tạo lại.
-6. Chi phí video tính lúc tạo theo tài liệu BTC; không tự retry POST trả lỗi mạng để tránh tạo tác vụ trùng.
-7. Xem clip thật đầu-giữa-cuối và xem chuyển cảnh trong bản ráp. Contact sheet không thay thế xem toàn video/audio.
-8. Khi hết thời gian: dùng clip đạt nhất; chỉ đổi sang ảnh tĩnh có chuyển động/dựng thường nếu đề và quy định cho phép; không mô tả đó là video AI mới được sinh.
-9. Máy B ráp, kiểm tra đồng bộ âm thanh/chữ và xuất. Không có yêu cầu mặc định phải deploy.
+## Process
+1. Each request focuses on one scene/one action. Pace the narrative in the storyboard; do not cram the whole story into one short clip.
+2. Separate character motion, camera motion and environment motion. For image-to-video, prefer describing motion; do not lengthily re-describe what the source frame already shows.
+3. Lock character/style details through references and the prompt, but use only parameters the Gateway actually supports; do not guarantee absolute consistency.
+4. Test risky scenes with the cheap/short configuration that has been granted. State seconds explicitly; do not rely on defaults.
+5. Video workflow: create → save the job ID immediately → poll the same job → download when completed. While processing, do not recreate the job. If a timeout occurs after the POST, the state may be unknown; ask the team leader and check the ledger/BTC (the organizers) before recreating.
+6. Video cost is charged at creation per the BTC documentation; do not auto-retry a POST that returned a network error, to avoid creating duplicate tasks.
+7. Watch the actual clip at start, middle and end, and watch the transitions in the assembled cut. A contact sheet does not replace watching/listening to the whole video/audio.
+8. When time runs out: use the best passing clip; switch to a still image with motion/regular editing only if the brief and the rules allow it; do not describe that as newly generated AI video.
+9. Machine B assembles, checks audio/text sync and exports. There is no default requirement to deploy.
 
-## Công cụ và kiểm chứng theo task
+## Tools and per-task verification
 
-Đọc [Video guide](../../docs/api-guides/04-video-generation.md) và [hướng dẫn thực thi](../../docs/SKILL_EXECUTION.md). Thực hiện theo chuỗi: tạo video (`POST /videos`) → lưu job ID → poll trạng thái (`GET /videos/{id}`) → tải video khi hoàn tất (`GET /videos/{id}/content`). Dùng FFprobe và FFmpeg để kiểm tra thông số và trích xuất frame; ghép clip và audio bằng công cụ biên tập/FFmpeg; kiểm tra bằng xem và nghe thật.
+Read the [Video guide](../../docs/api-guides/04-video-generation.md) and the [execution guide](../../docs/SKILL_EXECUTION.md). Follow this chain: create the video (`POST /videos`) → save the job ID → poll status (`GET /videos/{id}`) → download the video when complete (`GET /videos/{id}/content`). Use FFprobe and FFmpeg to check parameters and extract frames; join clips and audio with editing tools/FFmpeg; verify by actually watching and listening.
 
-## Đầu ra bắt buộc
-video-jobs.csv; clips; review timecode; timeline/assembly instructions; final export theo đề.
+## Required outputs
+video-jobs.csv; clips; review with timecodes; timeline/assembly instructions; final export per the brief.
 
-## Kiểm tra trước khi trả kết quả
-Không chỉ đoán job thành công từ HTTP 200. Không để clip lỗi/blank tiếp tục vào assembly. Không dùng model API ngoài dù Gateway chậm.
+## Pre-return checks
+Do not assume a job succeeded just from HTTP 200. Do not let a failed/blank clip continue into assembly. Do not use external model APIs even if the Gateway is slow.
 
-## Dừng và chuyển người
-Thiếu dữ kiện quyết định/thiếu quyền/có mâu thuẫn luật: nêu rõ, không tự lấp chỗ trống.
-Đội trưởng quyết định; chỉ tiếp tục trong phạm vi đã duyệt.
+## Stop and hand off to a human
+Missing decisive information, missing permission, or a conflict with the rules: state it clearly and do not fill the gap yourself.
+The team leader decides; continue only within the approved scope.

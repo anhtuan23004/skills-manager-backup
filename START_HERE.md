@@ -16,11 +16,12 @@ Luồng chính: **đọc đề → lập plan → chọn skill → thực thi �
 ## Gói này có gì?
 | Thư mục | Nội dung |
 |---|---|
-| `skills/` | 15 skill và routing hướng dẫn agent; dùng chung quy tắc trong `docs/TEAM_RULES.md`. |
-| `prompts/` | 10 prompt điều phối theo từng giai đoạn làm bài. |
+| `skills/` | 16 skill và routing hướng dẫn agent; dùng chung quy tắc trong `docs/TEAM_RULES.md`. |
+| `topics/` | Base template topic và 14 bài học chung (L1-L14); xem [INDEX](topics/INDEX.md). 10 topic 2025 (rút từ chương trình VTV) nằm ở `topics-archive-2025/`. |
+| `prompts/` | 12 prompt điều phối theo từng giai đoạn làm bài (gồm `10_deploy.md`). |
 | `templates/` | Execution-plan và các biểu mẫu brief, requirements, decisions, storyboard, asset ledger, QA. |
-| `docs/` | Vận hành 2 máy, hướng dẫn gọi API BTC, chọn MCP, kiểm tra an toàn, video reflection. |
-| `evals/` | 16 tình huống kiểm tra hành vi và xử lý tình huống của skill. |
+| `docs/` | Vận hành 2 máy, hướng dẫn gọi API BTC, chọn MCP, kiểm tra an toàn, video reflection, [deploy](docs/DEPLOY.md) và [insight từ VTV](docs/INSIGHTS_VTV_2025.md). |
+| `evals/` | 18 tình huống kiểm tra hành vi và xử lý tình huống của skill. |
 | `scripts/` | Check resource Gateway BTC và test offline; Python stdlib, không cần cài dependency. |
 
 ## Ba ranh giới phải giữ

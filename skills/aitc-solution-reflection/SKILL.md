@@ -1,35 +1,35 @@
 ---
 name: aitc-solution-reflection
-description: Tổng kết trung thực cách giải đề, lý do lựa chọn và ý nghĩa output để chuẩn bị video sau thi; dùng khi bản cuối gần ổn định trước T+120.
+description: Use when the final version is nearly stable before T+120 to write an honest summary of how the brief was solved, why each choice was made, and what the output means, in preparation for the post-contest video.
 metadata:
   version: "1.0"
-  language: "vi"
+  language: "en"
   status: "prepared-not-btc-approved"
 ---
-# 12 — Reflection và ý nghĩa
+# 12 — Reflection and meaning
 
-Áp dụng [quy tắc chung](../../docs/TEAM_RULES.md); chỉ đọc lại khi chưa có trong ngữ cảnh hoặc quy tắc thay đổi.
+Apply the [shared rules](../../docs/TEAM_RULES.md) (written in Vietnamese); re-read them only if they are not already in context or the rules have changed.
 
-## Đầu vào
-Đề; bản final hoặc version đang dùng; decision log; prompt/source; kết quả critic; xác nhận trực tiếp của thành viên nếu thiếu lý do.
+## Inputs
+The brief; the final version or the version in use; decision log; prompts/sources; critic results; direct confirmation from team members if rationale is missing.
 
-## Quy trình
-1. Lập evidence map: Requirement → Decision → Artifact evidence → Ý nghĩa dự kiến. Không yêu cầu hay tái dựng suy nghĩ bí mật của model.
-2. Phân loại từng câu: FACT (nguồn quan sát), TEAM RATIONALE (quyết định ghi nhận/xác nhận), INTENDED IMPACT, LIMITATION, UNKNOWN.
-3. Viết nhận xét đề: yêu cầu cốt lõi, điểm khó thực tế, điểm khiến đội phải lựa chọn; nêu dẫn chứng thay nhận xét tâng bốc BTC.
-4. Chọn tối đa 3 quyết định quan trọng; nêu lựa chọn, lý do thực tế, phương án đã cân nhắc nếu có, bằng chứng trong output. Chưa có rationale thì hỏi đội, không bịa.
-5. Nêu vai trò AI và con người, không chỉ liệt kê model. Không nhận tự huấn luyện model khi chỉ gọi API.
-6. Nêu ý nghĩa ở mức chứng minh được: muốn giúp ai hiểu/làm gì; phần nào đã thể hiện; hiệu quả nào chưa được đo. Không nói “được cộng điểm” hay biết BGK nghĩ gì.
-7. Viết takeaway một câu, bản 45 giây, và outline 3–6 phút: nhận xét đề → cách hiểu → lựa chọn → AI/con người → output/ý nghĩa → giới hạn/bài học. Chia lời cho thành viên theo đóng góp có thật.
-8. Đội đọc và xác nhận. Nếu final đổi, cập nhật phần liên quan trước freeze; ghi hash/version làm căn cứ.
-9. Sau T+120 sử dụng bản đã có để quay, không gọi AI tiếp theo mặc định bảo thủ khi BTC chưa xác nhận. Không sửa final artifact sau giờ vì đang làm video.
+## Process
+1. Build an evidence map: Requirement → Decision → Artifact evidence → Intended meaning. Do not request or reconstruct the model's hidden reasoning.
+2. Classify every sentence: FACT (observed source), TEAM RATIONALE (recorded or confirmed decision), INTENDED IMPACT, LIMITATION, UNKNOWN.
+3. Write the brief commentary: the core requirement, the real difficulties, and the points that forced the team to choose; cite evidence instead of flattering BTC (the organizers).
+4. Pick at most 3 key decisions; state the choice, the practical reason, the alternatives considered (if any), and the evidence in the output. If the rationale is missing, ask the team; do not invent it.
+5. State the roles of AI and humans, not just a list of models. Do not claim to have trained a model when only an API was called.
+6. State the meaning only to the extent it can be proven: whom it aims to help understand or do what; which parts already show this; which effects have not been measured. Do not say "earns extra points" or claim to know what the judges think.
+7. Write a one-sentence takeaway, a 45-second version, and a 3–6 minute outline: brief commentary → understanding → choices → AI/humans → output/meaning → limitations/lessons. Split the speaking parts among members according to real contributions.
+8. The team reads and confirms. If the final changes, update the affected sections before freeze; record the hash/version used as the basis.
+9. After T+120, use the existing version for recording; by default, conservatively make no further AI calls unless BTC has confirmed otherwise. Do not edit the final artifact after the deadline because of the video work.
 
-## Đầu ra bắt buộc
-solution-reflection.md gồm evidence table, takeaway, 45-second script, 3–6 minute talking points, phân vai, câu chưa được nói, người duyệt.
+## Required outputs
+solution-reflection.md containing: evidence table, takeaway, 45-second script, 3–6 minute talking points, role assignments, statements not allowed to be made, approver.
 
-## Kiểm tra trước khi trả kết quả
-Không đổi tên skill để che mục đích; log có thể công khai kiểm tra. Không biến lý do “hết thời gian” thành chiến lược nghệ thuật. Không thêm ý nghĩa chỉ trong pitch mà artifact không có.
+## Pre-return checks
+Do not rename the skill to disguise its purpose; the log may be inspected publicly. Do not turn "ran out of time" into an artistic strategy. Do not add meaning that exists only in the pitch and not in the artifact.
 
-## Dừng và chuyển người
-Thiếu dữ kiện quyết định/thiếu quyền/có mâu thuẫn luật: nêu rõ, không tự lấp chỗ trống.
-Đội trưởng quyết định; chỉ tiếp tục trong phạm vi đã duyệt.
+## Stop and hand off to a human
+Missing decisive facts, missing permission, or a conflict with the rules: state it clearly and do not fill the gap yourself.
+The team leader decides; continue only within the approved scope.

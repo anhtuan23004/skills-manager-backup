@@ -1,34 +1,34 @@
 ---
 name: aitc-concept-choice
-description: Đề xuất và lựa chọn concept giải đề có ý nghĩa, khác biệt và khả thi; dùng sau brief đã duyệt, trước khi sản xuất.
+description: Use after the brief is approved and before production; proposes and selects a meaningful, differentiated, feasible concept for answering the brief.
 metadata:
   version: "1.0"
-  language: "vi"
+  language: "en"
   status: "prepared-not-btc-approved"
 ---
-# 02 — Concept và lựa chọn
+# 02 — Concept and selection
 
-Áp dụng [quy tắc chung](../../docs/TEAM_RULES.md); chỉ đọc lại khi chưa có trong ngữ cảnh hoặc quy tắc thay đổi.
+Apply the [shared rules](../../docs/TEAM_RULES.md) (written in Vietnamese); re-read them only if they are not already in context or the rules have changed.
 
-## Đầu vào
-Brief đã duyệt; requirements; số phút còn lại; công cụ đã thử; nguồn được phép.
+## Inputs
+Approved brief; requirements; minutes remaining; tools already tried; permitted sources.
 
-## Quy trình
-1. Viết 3 hướng thực sự khác về cách truyền đạt, không chỉ khác style. Mỗi hướng có thông điệp một câu, người hưởng lợi, bằng chứng thể hiện trong output và vai trò AI.
-2. Kiểm tra cả ba với yêu cầu bắt buộc; loại hướng vi phạm trước khi so sánh sáng tạo.
-3. So sánh: fit đề; dễ hiểu; chất lượng thành phẩm có thể đạt; khác biệt; ý nghĩa phù hợp; thời gian/budget/rủi ro. Đây là rubric nội bộ, không gán trọng số BGK.
-4. Chỉ nêu ưu thế có lý do; không tuyên bố độc nhất thị trường hoặc đoán BGK sẽ thích.
-5. Đề xuất một hướng và phương án rút gọn giữ yêu cầu đề. Liệt kê điều chủ động không làm.
-6. Dừng để đội trưởng duyệt. Ghi quyết định và lý do ngay lúc chọn, cùng nguồn requirement.
-7. Nếu đổi concept: ghi phiên bản và lý do mới; không sửa ngược lịch sử để tạo câu chuyện nhất quán giả.
+## Process
+1. Write 3 directions that genuinely differ in how they communicate, not just in style. Each direction has a one-sentence message, the beneficiary, the evidence shown in the output, and the role of AI.
+2. Check all three against the mandatory requirements; eliminate any direction that violates them before comparing creativity.
+3. Compare on: fit to the brief; clarity; achievable quality of the finished product; differentiation; fitting meaning; time/budget/risk. This is an internal rubric; do not assign BGK (the judges) weights.
+4. State only advantages that have a reason; do not claim market uniqueness or guess what the judges will like.
+5. Recommend one direction and a reduced option that still keeps the brief's requirements. List what you deliberately will not do.
+6. Stop for the team leader's approval. Record the decision and the reason at the moment of choosing, together with the requirement source.
+7. If the concept changes: record the new version and reason; do not rewrite history to create a falsely consistent story.
 
-## Đầu ra bắt buộc
+## Required outputs
 concept.md: direction / key message / intended outcome / evidence in artifact / AI role / feasibility / risks / selected by.
-Một decision record có timestamp thực tế, decision ID, requirement ID, người duyệt.
+One decision record with an actual timestamp, decision ID, requirement ID, and approver.
 
-## Kiểm tra trước khi trả kết quả
-Không bắt buộc mọi đề gắn an ninh/quốc gia. Không chỉ dùng tên model để chứng minh sáng tạo. Không sinh asset trước khi hướng đã được chốt trừ thử khả thi được leader đồng ý.
+## Pre-return checks
+Do not require every brief to be tied to security/national themes. Do not rely on a model name alone to demonstrate creativity. Do not generate assets before the direction is settled, unless a feasibility test is approved by the team leader.
 
-## Dừng và chuyển người
-Thiếu dữ kiện quyết định/thiếu quyền/có mâu thuẫn luật: nêu rõ, không tự lấp chỗ trống.
-Đội trưởng quyết định; chỉ tiếp tục trong phạm vi đã duyệt.
+## Stop and hand off to a human
+Missing decisive information, missing permission, or a conflict with the rules: state it clearly; do not fill the gap yourself.
+The team leader decides; continue only within the approved scope.

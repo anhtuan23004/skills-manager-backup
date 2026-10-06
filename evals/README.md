@@ -1,8 +1,8 @@
 # Đánh giá skill trên đề tập
-**16 tình huống giả định, không phải đề BTC. Chưa được chạy benchmark bằng model trong gói.**
+**18 tình huống giả định, không phải đề BTC. Chưa được chạy benchmark bằng model trong gói.**
 
 ## Cách chạy
-Để kiểm tra luồng đọc đề → plan → skill → thực thi và đo tốc độ, dùng [6 đề luyện skill-first](skill-first-rehearsal.md). Đây là phần bổ sung cho 16 case JSON, chưa chạy bằng model.
+Để kiểm tra luồng đọc đề → plan → skill → thực thi và đo tốc độ, dùng [6 đề luyện skill-first](skill-first-rehearsal.md). Đây là phần bổ sung cho 18 case JSON, chưa chạy bằng model.
 
 Chỉ trong buổi luyện hợp lệ, dùng model/công cụ BTC nếu được cấp quyền test. Chọn 3–5 case sát điểm yếu của đội; có thể chạy toàn bộ khi đủ budget. Với cùng input và cùng model, so sánh **có skill** với **prompt cơ bản không skill**. Lưu prompt/output/timing/chi phí nếu đo được. Đừng thay đổi nhiều tham số một lần rồi quy công cho skill.
 

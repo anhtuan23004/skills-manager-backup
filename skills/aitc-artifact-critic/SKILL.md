@@ -1,34 +1,34 @@
 ---
 name: aitc-artifact-critic
-description: Phản biện bản nháp theo đề gốc và bằng chứng nhìn/nghe thực tế; dùng sau mỗi bản nháp đầy đủ và trước sửa cuối.
+description: Use when critiquing a draft against the original brief and real viewing/listening evidence; run after each complete draft and before the final fix.
 metadata:
   version: "1.0"
-  language: "vi"
+  language: "en"
   status: "prepared-not-btc-approved"
 ---
-# 09 — Phản biện đầu ra
+# 09 — Output critique
 
-Áp dụng [quy tắc chung](../../docs/TEAM_RULES.md); chỉ đọc lại khi chưa có trong ngữ cảnh hoặc quy tắc thay đổi.
+Apply the [shared rules](../../docs/TEAM_RULES.md) (written in Vietnamese); re-read them only if they are not already in context or the rules changed.
 
-## Đầu vào
-Brief nguyên gốc; requirements; artifact thật; source/claim ledger; thời gian còn lại. Ban đầu không cần xem rationale để tránh được thuyết phục thay cho sản phẩm.
+## Inputs
+Original brief; requirements; the real artifact; source/claim ledger; time remaining. Initially do not read the rationale, to avoid being persuaded by it instead of judging the product.
 
-## Quy trình
-1. Đọc brief và xem/nghe artifact. Nếu không có quyền xem media, trả UNVERIFIED cho các mục thị giác/âm thanh; không thay bằng đánh giá prompt.
-2. Chấm yêu cầu bắt buộc PASS / FAIL / UNVERIFIED / NOT APPLICABLE với vị trí file, trang, timecode hoặc câu cụ thể.
-3. Kiểm tra thông điệp có tự thể hiện trong artifact khi chưa nghe pitch không. Chỉ sau đó đọc rationale để tìm chỗ lệch.
-4. Tách lỗi nghĩa/nội dung, lỗi kỹ thuật, lỗi nhất quán và vấn đề thẩm mỹ. Không để một tổng điểm che blocker.
-5. Chỉ đề xuất 3 sửa có tác động lớn nhất, nêu vị trí, lý do gắn requirement, chi phí thời gian, phần cần giữ nguyên.
-6. Không bịa số điểm/trọng số hoặc giả làm BGK. Có rubric BTC thì chấm đúng rubric; chưa có thì ghi rubric nội bộ.
-7. Chuyển nghi vấn factual/symbol/context cho context-review và người duyệt.
-8. Nếu còn ít hơn 15 phút, ưu tiên lỗi bắt buộc và lỗi gây hiểu nhầm; không mở concept mới.
+## Process
+1. Read the brief and view/listen to the artifact. If you cannot access the media, return UNVERIFIED for visual/audio items; do not substitute an assessment of the prompt.
+2. Score each mandatory requirement PASS / FAIL / UNVERIFIED / NOT APPLICABLE, citing the specific file location, page, timecode, or sentence.
+3. Check whether the message comes across in the artifact itself without hearing the pitch. Only after that, read the rationale to find mismatches.
+4. Separate meaning/content errors, technical errors, consistency errors, and aesthetic issues. Do not let a single total score hide a blocker.
+5. Propose only the 3 highest-impact fixes, stating location, the reason tied to a requirement, time cost, and what must stay unchanged.
+6. Do not invent scores/weights or pretend to be the judges (BGK). If a BTC (the organizers) rubric exists, score by that rubric; if not, label it an internal rubric.
+7. Hand factual/symbol/context doubts to context-review and the approver.
+8. If less than 15 minutes remain, prioritize mandatory-requirement errors and misleading errors; do not open a new concept.
 
-## Đầu ra bắt buộc
+## Required outputs
 critic-vNN.md: status table; evidence; top 3 fixes; do-not-change; unresolved human checks.
 
-## Kiểm tra trước khi trả kết quả
-Không tự khen output do cùng agent tạo. Không ghi “đã xem hết video” nếu chỉ xem vài frame. Không quyết định nộp thay leader.
+## Pre-return checks
+Do not praise output produced by the same agent. Do not write "watched the whole video" if you only viewed a few frames. Do not decide on submission in place of the leader.
 
-## Dừng và chuyển người
-Thiếu dữ kiện quyết định/thiếu quyền/có mâu thuẫn luật: nêu rõ, không tự lấp chỗ trống.
-Đội trưởng quyết định; chỉ tiếp tục trong phạm vi đã duyệt.
+## Stop and hand off to a human
+Missing decision data, missing permission, or a conflict with the rules: state it clearly and do not fill the gap yourself.
+The team leader decides; continue only within the approved scope.

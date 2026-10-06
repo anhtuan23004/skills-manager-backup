@@ -1,39 +1,39 @@
 ---
 name: aitc-text-producer
-description: Viết script, nội dung hoặc văn bản đầu ra tiếng Việt từ brief đã duyệt; dùng cho bài text, lời bình, phụ đề hoặc câu chữ trong hình/video.
+description: Use when writing Vietnamese scripts, content, or output text from an approved brief; covers text pieces, narration, subtitles, or wording inside images/video.
 metadata:
   version: "2.0"
-  language: "vi"
+  language: "en"
   status: "prepared-not-btc-approved"
 ---
-# 05 — Sản xuất text
+# 05 — Text production
 
-Áp dụng [quy tắc chung](../../docs/TEAM_RULES.md); chỉ đọc lại khi chưa có trong ngữ cảnh hoặc quy tắc thay đổi.
+Apply the [shared rules](../../docs/TEAM_RULES.md) (written in Vietnamese); re-read them only if they are not in context or the rules have changed.
 
-## Đầu vào
-Brief; concept; outline; dữ liệu có nguồn; độ dài/giọng điệu/định dạng yêu cầu.
+## Inputs
+Brief; concept; outline; sourced data; required length/tone/format.
 
-## Quy trình
-1. Chốt chức năng của văn bản: giải thích, kể chuyện, hướng dẫn, kêu gọi hành động hay nội dung độc lập. Không thêm mục tiêu ngoài đề.
-2. Dựng outline ngắn theo requirement; viết bản nháp từ nguồn đã xác minh.
-3. Phân biệt câu factual và câu sáng tạo. Gắn claim ID cho dữ kiện; không bịa trích dẫn, hotline, cơ quan, điều luật hoặc khảo sát.
-4. Với narration, viết để nói; câu có nhịp, đúng dấu, không chèn chú thích kỹ thuật vào text đọc. Với phụ đề, giữ ý và kiểm tra đồng bộ sau xuất.
-5. Với infographic/poster, rút ngắn mà giữ nghĩa; không lấy mỹ thuật làm lý do bỏ cảnh báo bắt buộc.
-6. Đọc thử/đếm từ/đo thời lượng; không quy đổi số từ thành thời lượng chắc chắn. Ghi cách đo và phiên bản.
-7. Critic đối chiếu brief; sửa nhiều nhất 3 điểm có tác động. Xuất UTF-8 và bản final không lẫn chú thích nội bộ.
+## Process
+1. Settle the function of the text: explain, tell a story, instruct, call to action, or standalone content. Do not add goals beyond the brief.
+2. Build a short outline per requirement; write the draft from verified sources.
+3. Distinguish factual sentences from creative ones. Attach a claim ID to facts; never invent quotations, hotlines, agencies, legal provisions, or surveys.
+4. For narration, write to be spoken; sentences with rhythm, correct punctuation and correct Vietnamese diacritics, with no technical notes inserted into the text to be read. For subtitles, keep the meaning and check sync after export.
+5. For infographics/posters, shorten while keeping the meaning; do not use aesthetics as a reason to drop mandatory warnings.
+6. Read aloud/count words/measure duration; do not convert word count into a definite duration. Record the measurement method and version.
+7. A critic checks against the brief; fix at most 3 high-impact points. Export UTF-8 and a final version with no internal notes mixed in.
 
-## Công cụ và kiểm chứng theo task
+## Tools and per-task verification
 
-Đọc [Text guide](../../docs/api-guides/02-text-generation.md) khi cần gọi text/responses và [hướng dẫn thực thi](../../docs/SKILL_EXECUTION.md). Nếu agent hiện tại đã chạy qua Gateway BTC và soạn thảo trực tiếp được thì không cần thêm bước gọi phụ qua script ngoài.
+Read the [Text guide](../../docs/api-guides/02-text-generation.md) when calling text/responses and the [execution guide](../../docs/SKILL_EXECUTION.md). If the current agent already runs through the BTC Gateway (BTC = the organizers) and can draft directly, no extra side call through an external script is needed.
 
-Nội dung cần thông tin mới: đọc [Grounding](../../docs/api-guides/07-web-grounding.md), chỉ bật search trong phạm vi được phép. Hỏi đáp tài liệu: theo [RAG workflow](../aitc-production-planner/references/rag-workflow.md); trả lời từ context có nguồn, nêu thiếu evidence khi không đủ dữ liệu.
+Content that needs fresh information: read [Grounding](../../docs/api-guides/07-web-grounding.md) and enable search only within the allowed scope. Document Q&A: follow the [RAG workflow](../aitc-production-planner/references/rag-workflow.md); answer from sourced context and state missing evidence when data is insufficient.
 
-## Đầu ra bắt buộc
-text-vNN.md hoặc narration.txt; claim ledger; ghi rõ nội dung final và ghi chú không đưa vào thành phẩm.
+## Required outputs
+text-vNN.md or narration.txt; claim ledger; clearly mark the final content and the notes that must not go into the deliverable.
 
-## Kiểm tra trước khi trả kết quả
-Không phóng đại ích lợi. Không mô tả sản phẩm như đã triển khai thật. Không mặc định văn phong hành chính vì cuộc thi được bảo trợ.
+## Pre-return checks
+Do not exaggerate benefits. Do not describe the product as if it were really deployed. Do not default to an administrative register just because the contest is sponsored.
 
-## Dừng và chuyển người
-Thiếu dữ kiện quyết định/thiếu quyền/có mâu thuẫn luật: nêu rõ, không tự lấp chỗ trống.
-Đội trưởng quyết định; chỉ tiếp tục trong phạm vi đã duyệt.
+## Stop and hand off to a human
+Missing decisive facts, missing permission, or a rules conflict: state it clearly and do not fill the gap yourself.
+The team leader decides; continue only within the approved scope.

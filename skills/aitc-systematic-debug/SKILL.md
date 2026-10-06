@@ -1,34 +1,34 @@
 ---
 name: aitc-systematic-debug
-description: Chẩn đoán lỗi Gateway, file, export hoặc đồng bộ trong lúc thi; dùng khi request lỗi, clip không tải được hoặc output không mở được.
+description: Use when diagnosing Gateway, file, export, or sync failures during the contest; for failing requests, clips that will not download, or outputs that will not open.
 metadata:
   version: "1.0"
-  language: "vi"
+  language: "en"
   status: "prepared-not-btc-approved"
 ---
-# 10 — Xử lý sự cố
+# 10 — Incident handling
 
-Áp dụng [quy tắc chung](../../docs/TEAM_RULES.md); chỉ đọc lại khi chưa có trong ngữ cảnh hoặc quy tắc thay đổi.
+Apply the [shared rules](../../docs/TEAM_RULES.md) (written in Vietnamese); re-read them only if they are not already in context or the rules changed.
 
-## Đầu vào
-Thông báo lỗi không chứa secret; operation/model; thời điểm; job/request ID; lần cuối thành công; số phút còn.
+## Inputs
+Error message without secrets; operation/model; time of occurrence; job/request ID; last success; minutes remaining.
 
-## Quy trình
-1. Ghi symptom và cách tái hiện nhỏ nhất; không đổi nhiều tham số/công cụ cùng lúc.
-2. Phân loại: 401 key; 403 quyền/model; 400 schema/endpoint; 429 rate hoặc budget; timeout; processing; lỗi file/codec. Dựa thông báo thực tế, không chỉ mã HTTP.
-3. 429 rate: đợi/backoff theo hướng dẫn. 429 budget: đợi không tăng ngân sách, dừng và giảm chi phí/báo leader.
-4. Timeout sau POST tạo media: chưa biết tác vụ đã tạo chưa; không retry tự động. Poll job đã có, kiểm tra nhật ký/BTC.
-5. Model/endpoint mismatch: đối chiếu docs BTC, không đổi sang API bên thứ ba hoặc gửi key BTC ra provider.
-6. Kiểm tra một giả thuyết mỗi lần; test lại bằng cùng input nhỏ; lưu evidence kết quả.
-7. Sau tối đa 5 phút không khắc phục: báo leader, chọn fallback đã duyệt giữ yêu cầu. Không chờ một job vô hạn.
-8. Ghi incident và quyết định; không xóa record lỗi, không dựng log giả. Nếu lộ credential: dừng, liên hệ BTC; không tự sửa log gốc.
+## Process
+1. Record the symptom and the smallest reproduction; do not change many parameters/tools at once.
+2. Classify: 401 key; 403 permission/model; 400 schema/endpoint; 429 rate or budget; timeout; processing; file/codec error. Base it on the actual message, not just the HTTP code.
+3. 429 rate: wait/back off as instructed. 429 budget: waiting does not increase the budget; stop and reduce cost / report to the team leader.
+4. Timeout after a POST that creates media: you do not know whether the task was created; do not retry automatically. Poll the existing job and check the logs/BTC (the organizers).
+5. Model/endpoint mismatch: cross-check the BTC docs; do not switch to a third-party API or send the BTC key to a provider.
+6. Test one hypothesis at a time; re-test with the same small input; save the result as evidence.
+7. If not resolved after at most 5 minutes: report to the team leader and pick an approved fallback that keeps the requirements. Do not wait indefinitely on a single job.
+8. Record the incident and the decision; do not delete failed records and do not fabricate logs. If a credential is exposed: stop and contact BTC; do not edit the original logs yourself.
 
-## Đầu ra bắt buộc
+## Required outputs
 incident.md: symptom / evidence / hypothesis / test / result / next action / owner.
 
-## Kiểm tra trước khi trả kết quả
-Không ghi “fixed” khi chưa chạy lại. Không bắn request vô hạn. Không auto-update dependency hoặc đổi framework giữa phiên.
+## Pre-return checks
+Do not write "fixed" before re-running. Do not fire requests indefinitely. Do not auto-update dependencies or change frameworks mid-session.
 
-## Dừng và chuyển người
-Thiếu dữ kiện quyết định/thiếu quyền/có mâu thuẫn luật: nêu rõ, không tự lấp chỗ trống.
-Đội trưởng quyết định; chỉ tiếp tục trong phạm vi đã duyệt.
+## Stop and hand off to a human
+Missing decision data, missing permission, or a conflict with the rules: state it clearly and do not fill the gap yourself.
+The team leader decides; continue only within the approved scope.

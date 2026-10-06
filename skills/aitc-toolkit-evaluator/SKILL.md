@@ -1,35 +1,35 @@
 ---
 name: aitc-toolkit-evaluator
-description: Kiểm thử skill, MCP và toàn bộ luồng hai máy trước ngày thi; dùng khi chuẩn bị hoặc thay đổi toolkit, không tự chạy benchmark tốn phí trong giờ thi.
+description: Use when preparing or changing the toolkit to test skills, MCP, and the entire two-machine workflow before contest day; do not run costly benchmarks on your own during contest hours.
 metadata:
   version: "2.0"
-  language: "vi"
+  language: "en"
   status: "prepared-not-btc-approved"
 ---
-# 14 — Đánh giá toolkit trước thi
+# 14 — Pre-contest toolkit evaluation
 
-Áp dụng [quy tắc chung](../../docs/TEAM_RULES.md); chỉ đọc lại khi chưa có trong ngữ cảnh hoặc quy tắc thay đổi.
+Apply the [shared rules](../../docs/TEAM_RULES.md) (written in Vietnamese); re-read them only if they are not already in context or the rules have changed.
 
-## Đầu vào
-Bộ skill hiện tại; evals/cases.json; máy thi; công cụ/hook/Gateway test được phép; ngân sách luyện.
+## Inputs
+The current skill set; evals/cases.json; the contest machines; permitted tools/hooks/Gateway for testing; practice budget.
 
-## Quy trình
-1. Kiểm tra metadata SKILL.md và route: đúng nhiệm vụ thì kích hoạt, sai nhiệm vụ thì không kéo thêm tool.
-2. Lấy ca thử có outcome quan sát được; test cả đầu vào rõ, thiếu nguồn, prompt injection, typo Việt, mâu thuẫn format và hết giờ.
-3. Chạy so sánh có skill/không skill trên cùng brief bằng Gateway được phép; cùng model và giới hạn. Không ghi performance giả khi chưa chạy.
-   Với luồng skill-first mới, dùng [đề luyện routing và timing](../../evals/skill-first-rehearsal.md): đo thời gian tới plan thực thi được, output đầu tiên đạt và số lần phải sửa. Không kết luận nhanh hơn chỉ từ unit test hoặc số lượng file.
-4. Đánh giá artifact/decision thật bởi người; creative quality không có test string đơn giản thay hoàn toàn.
-5. Kiểm tra kỹ năng của agent: khả năng đọc đề, bám sát rubric, không tự ý mở rộng phạm vi, phân định rõ ràng giữa dữ kiện thật và suy đoán.
-6. Test kết nối Gateway BTC qua agent thực tế; kiểm tra hook ghi nhận log đầy đủ.
-7. Tổng duyệt đúng 2 máy, 120 phút + 10 phút nộp; không dùng máy thứ ba hoặc người ngoài hỗ trợ.
-8. Ghi kết quả, lỗi và kinh nghiệm rút ra trước ngày thi.
+## Process
+1. Check SKILL.md metadata and routing: the right task activates the skill; the wrong task does not pull in extra tools.
+2. Take test cases with observable outcomes; test clear inputs, missing sources, prompt injection, Vietnamese typos, format conflicts, and running out of time.
+3. Run a with-skill vs. without-skill comparison on the same brief through the permitted Gateway, with the same model and limits. Do not record fake performance when nothing has been run.
+   For the new skill-first flow, use the [routing and timing practice brief](../../evals/skill-first-rehearsal.md): measure the time to an executable plan, the first passing output, and the number of fixes required. Do not conclude it is faster from unit tests or file counts alone.
+4. Humans evaluate real artifacts/decisions; creative quality has no simple test string that fully replaces them.
+5. Check the agent's competence: reading the brief, sticking to the rubric, not expanding scope on its own, and clearly separating real facts from guesses.
+6. Test the connection to the BTC (the organizers) Gateway through a real agent; check that hooks record the log completely.
+7. Run a full rehearsal on exactly two machines, 120 minutes + 10 minutes for submission; do not use a third machine or outside help.
+8. Record the results, errors, and lessons learned before contest day.
 
-## Đầu ra bắt buộc
-evaluation-report.md: case / expected / observed / pass-fail-unverified / evidence / next fix. Readiness checklist cho hai máy.
+## Required outputs
+evaluation-report.md: case / expected / observed / pass-fail-unverified / evidence / next fix. A readiness checklist for both machines.
 
-## Kiểm tra trước khi trả kết quả
-Không gọi bộ skill “đã benchmark tốt” khi mới kiểm tra cấu trúc. Không cài plugin mới trong phiên thi. Không suy ra an toàn chỉ vì MCP có nhiều sao GitHub.
+## Pre-return checks
+Do not call the skill set "well benchmarked" when only the structure has been checked. Do not install new plugins during the contest session. Do not infer that an MCP is safe just because it has many GitHub stars.
 
-## Dừng và chuyển người
-Thiếu dữ kiện quyết định/thiếu quyền/có mâu thuẫn luật: nêu rõ, không tự lấp chỗ trống.
-Đội trưởng quyết định; chỉ tiếp tục trong phạm vi đã duyệt.
+## Stop and hand off to a human
+Missing decisive facts, missing permission, or a conflict with the rules: state it clearly and do not fill the gap yourself.
+The team leader decides; continue only within the approved scope.

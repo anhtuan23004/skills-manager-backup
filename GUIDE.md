@@ -29,8 +29,9 @@ Nộp file/source/prompts theo đề → quay video sau thi
 ```
 **Skills** quyết định trình tự/cách phân tích. **Prompts** là lệnh gọi theo giai đoạn. **Gateway BTC** là đường gọi AI chính thức. **Templates/log** giữ thông tin và bằng chứng. Các lớp này không thay thế nhau. Không nạp toàn bộ toolkit đầu phiên và không tạo vòng phê duyệt mới cho phạm vi đã được giao thực thi; cách thức thực hiện chi tiết ở [SKILL_EXECUTION](docs/SKILL_EXECUTION.md).
 
-## 4. Bộ 15 skill
-Danh mục, thời điểm dùng và link từng SKILL.md ở [skills/INDEX.md](skills/INDEX.md); chọn theo deliverable bằng [routing](skills/aitc-orchestrator/references/routing.md). Mỗi skill có đầu vào, quy trình, đầu ra, tiêu chuẩn kiểm tra và điều kiện chuyển cho người. Không load cả 15 skill cho một tác vụ nhỏ.
+## 4. Bộ 16 skill và 10 topic
+Danh mục, thời điểm dùng và link từng SKILL.md ở [skills/INDEX.md](skills/INDEX.md); chọn theo deliverable bằng [routing](skills/aitc-orchestrator/references/routing.md). Mỗi skill có đầu vào, quy trình, đầu ra, tiêu chuẩn kiểm tra và điều kiện chuyển cho người. Không load cả 16 skill cho một tác vụ nhỏ.
+Bài học chung và base template topic nằm ở [topics/INDEX.md](topics/INDEX.md) (rút từ chương trình VTV, không phải luật BTC); topic 2025 đã chuyển vào [topics-archive-2025](topics-archive-2025/INDEX.md), chỉ mở topic khớp đề. Đề cần link chạy trực tuyến thì dùng thêm skill 15 (deploy) và [DEPLOY](docs/DEPLOY.md).
 
 ## 5. Quy trình 120 phút trên 2 máy
 Các mốc trung gian dưới đây là **đề xuất nội bộ**, không phải deadline mới của BTC. Tổng khung 120 phút +10 phút nộp dựa trên tài liệu training. [B1]
@@ -46,6 +47,8 @@ Các mốc trung gian dưới đây là **đề xuất nội bộ**, không ph�
 | 100–112 | Reflection từ bản hiện có + decision log. | Final QA, đối chiếu source/prompt. | Đội duyệt lời giải thích; cập nhật nếu final thay đổi. |
 | 112–120 | Duyệt version cuối; không mở concept mới. | Freeze file, commit/push đúng quy trình BTC, chuẩn bị nộp. | Final và reflection nói về cùng một version. |
 | 120–130 | Kiểm tra tên/link/attachment cùng người nộp. | Một người thao tác nộp và giữ xác nhận. | Chỉ nộp; không tiếp tục tạo/sửa sản phẩm. |
+
+Đề cần link chạy trực tuyến: bản khung lên link thật quanh T+30, đóng băng tính năng quanh T+70, kiểm tra link live từ máy khác ở T+100 và T+108 (xem [DEPLOY](docs/DEPLOY.md)); không để deploy dồn vào T+112–120.
 
 **Ba vai trò, không phải ba máy:** người chốt concept/ý nghĩa; người điều khiển AI/pipeline; người lắp ghép/QA. Sau bước concept, luôn có người kiểm tra độc lập. Không để hai máy đồng thời sửa một file; phân thư mục và người sở hữu. Hai máy cùng chịu budget/rate limit của đội.
 

@@ -1,23 +1,24 @@
-# Danh mục skill
+# Skill catalog
 
-Bắt đầu bằng [orchestrator](aitc-orchestrator/SKILL.md) và [bản đồ chọn skill theo đề](aitc-orchestrator/references/routing.md). Luồng chính: đọc đề → plan có task thực thi → nạp skill cần dùng → tạo output → kiểm chứng. Bảng dưới là danh mục tra cứu, không phải 15 bước bắt buộc.
+Start with the [orchestrator](aitc-orchestrator/SKILL.md) and the [brief-based skill selection map](aitc-orchestrator/references/routing.md). Main flow: read the brief → plan with executable tasks → load the skills needed → produce output → verification. The table below is a lookup catalog, not 16 mandatory steps. Experience by brief type is kept separately in [topics/INDEX](../topics/INDEX.md) (lessons and base template) and the [2025 topic archive](../topics-archive-2025/INDEX.md).
 
-Mỗi task ghi skill, helper/API guide, file output và check theo [execution-plan](../templates/execution-plan.md). [Cách chạy helper](../docs/SKILL_EXECUTION.md) cho phép làm trực tiếp trong workspace. Agent xây app theo plan khi đề cần; skill không phụ thuộc việc cài FastAPI/Streamlit.
+Each task records its skill, helper/API guide, output file, and check per the [execution-plan](../templates/execution-plan.md). [How to run helpers](../docs/SKILL_EXECUTION.md) allows working directly in the workspace. The agent builds the app per the plan when the brief needs it; skills do not depend on installing FastAPI/Streamlit.
 
-| ID và tên | Mở file | Khi dùng |
+| ID and name | Open file | When to use |
 |---|---|---|
-| 00 — Điều phối bài thi | [aitc-orchestrator](aitc-orchestrator/SKILL.md) | Điều phối toàn bộ lượt thi khi nhận đề hoặc cần biết bước tiếp theo; chọn skill theo ảnh, video, text, audio, kiểm soát hai máy và mốc thời gian. |
-| 01 — Giải mã đề | [aitc-brief-decoder](aitc-brief-decoder/SKILL.md) | Phân tích nguyên văn đề, trích deliverable và rubric, ghi rõ chỗ chưa xác định; dùng ngay khi mở đề và khi BTC bổ sung yêu cầu. |
-| 02 — Concept và lựa chọn | [aitc-concept-choice](aitc-concept-choice/SKILL.md) | Đề xuất và lựa chọn concept giải đề có ý nghĩa, khác biệt và khả thi; dùng sau brief đã duyệt, trước khi sản xuất. |
-| 03 — Bối cảnh Việt Nam và trách nhiệm nội dung | [aitc-vietnam-context-review](aitc-vietnam-context-review/SKILL.md) | Rà soát tính phù hợp Việt Nam, ý nghĩa công chúng, factual claims, biểu tượng và sự minh bạch AI; dùng khi chọn concept và trước nộp sản phẩm truyền thông. |
-| 04 — Kế hoạch thực thi | [aitc-production-planner](aitc-production-planner/SKILL.md) | Gắn task với skill/helper/output/check; có reference riêng cho app và RAG khi đề cần. |
-| 05 — Sản xuất text | [aitc-text-producer](aitc-text-producer/SKILL.md) | Viết script, nội dung hoặc văn bản đầu ra tiếng Việt từ brief đã duyệt; dùng cho bài text, lời bình, phụ đề hoặc câu chữ trong hình/video. |
-| 06 — Chỉ đạo hình ảnh | [aitc-image-director](aitc-image-director/SKILL.md) | Thiết kế hướng thị giác, prompt và kiểm tra ảnh theo đề; dùng cho poster, key visual, bộ ảnh hoặc frame cho video. |
-| 07 — Chỉ đạo video | [aitc-video-director](aitc-video-director/SKILL.md) | Viết shot prompt, tạo video qua Gateway, theo dõi job và duy trì mạch hình; dùng khi đề yêu cầu video hoặc đoạn chuyển động. |
-| 08 — Sản xuất audio | [aitc-audio-producer](aitc-audio-producer/SKILL.md) | Chuẩn bị narration, phát âm tiếng Việt, TTS/STT và kiểm tra âm thanh; dùng khi bài thi có voice-over hoặc audio. |
-| 09 — Phản biện đầu ra | [aitc-artifact-critic](aitc-artifact-critic/SKILL.md) | Phản biện bản nháp theo đề gốc và bằng chứng nhìn/nghe thực tế; dùng sau mỗi bản nháp đầy đủ và trước sửa cuối. |
-| 10 — Xử lý sự cố | [aitc-systematic-debug](aitc-systematic-debug/SKILL.md) | Chẩn đoán lỗi Gateway, file, export hoặc đồng bộ trong lúc thi; dùng khi request lỗi, clip không tải được hoặc output không mở được. |
-| 11 — Kiểm tra bản cuối | [aitc-final-qa](aitc-final-qa/SKILL.md) | Kiểm tra bản nộp bằng yêu cầu, file thực tế và bằng chứng mới; dùng trước freeze, không thay thế kiểm tra bằng mắt/tai. |
-| 12 — Reflection và ý nghĩa | [aitc-solution-reflection](aitc-solution-reflection/SKILL.md) | Tổng kết trung thực cách giải đề, lý do lựa chọn và ý nghĩa output để chuẩn bị video sau thi; dùng khi bản cuối gần ổn định trước T+120. |
-| 13 — Freeze và nộp | [aitc-submission-controller](aitc-submission-controller/SKILL.md) | Đóng gói, đối chiếu manifest và hướng dẫn người nộp đúng thời hạn; dùng sau final QA và trước/sau thao tác nộp của người. |
-| 14 — Đánh giá toolkit trước thi | [aitc-toolkit-evaluator](aitc-toolkit-evaluator/SKILL.md) | Kiểm thử skill, MCP và toàn bộ luồng hai máy trước ngày thi; dùng khi chuẩn bị hoặc thay đổi toolkit, không tự chạy benchmark tốn phí trong giờ thi. |
+| 00 — Exam orchestration | [aitc-orchestrator](aitc-orchestrator/SKILL.md) | Orchestrate the whole exam run when receiving a brief or when the next step is needed; choose skills by image, video, text, audio; control the two machines and time marks. |
+| 01 — Brief decoding | [aitc-brief-decoder](aitc-brief-decoder/SKILL.md) | Analyze the verbatim brief, extract deliverables and rubric, state clearly what is undetermined; use as soon as the brief is opened and whenever BTC (the organizers) add requirements. |
+| 02 — Concept and selection | [aitc-concept-choice](aitc-concept-choice/SKILL.md) | Propose and select a meaningful, distinctive, feasible concept for solving the brief; use after the brief is approved, before production. |
+| 03 — Vietnamese context and content responsibility | [aitc-vietnam-context-review](aitc-vietnam-context-review/SKILL.md) | Review fit with Vietnam, public meaning, factual claims, symbols, and AI transparency; use when choosing a concept and before submitting media products. |
+| 04 — Execution plan | [aitc-production-planner](aitc-production-planner/SKILL.md) | Tie each task to a skill/helper/output/check; has separate references for app and RAG when the brief needs them. |
+| 05 — Text production | [aitc-text-producer](aitc-text-producer/SKILL.md) | Write scripts, content, or Vietnamese output text from the approved brief; use for text deliverables, voice-over, subtitles, or wording inside images/video. |
+| 06 — Image direction | [aitc-image-director](aitc-image-director/SKILL.md) | Design the visual direction, prompts, and image checks per the brief; use for posters, key visuals, image sets, or frames for video. |
+| 07 — Video direction | [aitc-video-director](aitc-video-director/SKILL.md) | Write shot prompts, generate video via the Gateway, track jobs, and maintain visual continuity; use when the brief requires video or moving segments. |
+| 08 — Audio production | [aitc-audio-producer](aitc-audio-producer/SKILL.md) | Prepare narration, Vietnamese pronunciation, TTS/STT, and audio checks; use when the exam entry has voice-over or audio. |
+| 09 — Output critique | [aitc-artifact-critic](aitc-artifact-critic/SKILL.md) | Critique drafts against the original brief and real viewing/listening evidence; use after each complete draft and before the final fix. |
+| 10 — Incident handling | [aitc-systematic-debug](aitc-systematic-debug/SKILL.md) | Diagnose Gateway, file, export, or sync errors during the exam; use when a request fails, a clip cannot be downloaded, or output cannot be opened. |
+| 11 — Final version check | [aitc-final-qa](aitc-final-qa/SKILL.md) | Check the submission against the requirements, actual files, and fresh evidence; use before freeze; does not replace checking by eye/ear. |
+| 12 — Reflection and meaning | [aitc-solution-reflection](aitc-solution-reflection/SKILL.md) | Give an honest summary of how the brief was solved, the reasons for choices, and the meaning of the output to prepare the post-exam video; use when the final version is nearly stable, before T+120. |
+| 13 — Freeze and submit | [aitc-submission-controller](aitc-submission-controller/SKILL.md) | Package, check against the manifest, and guide the submitter to meet the deadline; use after final QA and before/after the human's submit action. |
+| 14 — Pre-exam toolkit evaluation | [aitc-toolkit-evaluator](aitc-toolkit-evaluator/SKILL.md) | Test skills, MCP, and the whole two-machine flow before exam day; use when preparing or changing the toolkit; do not run costly benchmarks during exam time. |
+| 15 — Deploy and publish | [aitc-deploy-publisher](aitc-deploy-publisher/SKILL.md) | Put the web/game/app on an accessible link, check the live link, and prepare a fallback; use only when the brief requires an online-running product. |
