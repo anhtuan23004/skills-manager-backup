@@ -1,0 +1,1 @@
+Dùng aitc-production-planner và chỉ producer phù hợp [text/image/video/audio]. Brief/concept đã duyệt: [path]. Mốc còn lại [phút], budget BTC [số]. Lập task có asset ID, người, phụ thuộc, tiêu chí đạt. Khởi đầu bằng mẫu kiểm tra rủi ro lớn nhất; không sinh hàng loạt trước khi mẫu được duyệt.

@@ -1,0 +1,478 @@
+{
+  "package": "AI Thuc Chien Toolkit v1",
+  "prepared_on": "2026-10-05",
+  "status": "Prepared; not BTC-approved or live-Gateway-validated",
+  "skills": 15,
+  "prompts": 10,
+  "blank_templates": 16,
+  "mcp_local_tools": 4,
+  "offline_tests_passed": 48,
+  "llm_evaluation_cases_not_run": 16,
+  "files": [
+    {
+      "path": "GUIDE.md",
+      "bytes": 9926,
+      "sha256": "5c03a0ddd25af929381f2466257a3dfad2524049dc8e6d1b67f3bb59c5415349"
+    },
+    {
+      "path": "HUONG_DAN_TOOLKIT.html",
+      "bytes": 53557,
+      "sha256": "ddd0b9c9975d95fa44f4181dbac9993d78ad5a38e7f4aee4382a30eced2d7ff3"
+    },
+    {
+      "path": "START_HERE.md",
+      "bytes": 2910,
+      "sha256": "d29db8a3a5bc28129e90c1c2e4b17fef8d95386f3efeb63208b8e25b63cd7126"
+    },
+    {
+      "path": "config/gateway.example.json",
+      "bytes": 565,
+      "sha256": "293c9a7e4b045a9fb6f10ca81fb80074c97342a5554f4773acf82c124a574fdd"
+    },
+    {
+      "path": "config/gitignore.fragment.txt",
+      "bytes": 373,
+      "sha256": "023903d545ebe8e950db82dcb04422c2fc4e77ecc64a8b97b6140365b5025816"
+    },
+    {
+      "path": "config/permission.example.json",
+      "bytes": 389,
+      "sha256": "6b7ad10a9beb2f83eef2690956c09d7780a8edfe0ca2e34d93abfb2b4922f28c"
+    },
+    {
+      "path": "docs/CHECKLIST_2_MACHINES.md",
+      "bytes": 2066,
+      "sha256": "d1233f300136c128f5530b15450ad499a7a34443d52ba719dcb42ada52675d01"
+    },
+    {
+      "path": "docs/GATEWAY_NOTES.md",
+      "bytes": 3296,
+      "sha256": "0fddb852961225f981bda3e56b1924627843f0dac6784ee27a0a1f999084361c"
+    },
+    {
+      "path": "docs/INSTALL_AND_RUN.md",
+      "bytes": 8409,
+      "sha256": "b979a38b33a42027a6aa40bc136e6d62dea22dc2cf4ee33fd93ad75e32ed7ec7"
+    },
+    {
+      "path": "docs/MCP_SELECTION.md",
+      "bytes": 4274,
+      "sha256": "256cf6a2d9dea1cb78562af86065b150d763e260279c382ccdbaab0f7be2f632"
+    },
+    {
+      "path": "docs/OPERATING_FLOW.md",
+      "bytes": 3464,
+      "sha256": "ed40335a37356c30df9f0d9b4d86cbac6c12aa8699bba3fd89b8d92833f6572a"
+    },
+    {
+      "path": "docs/PUBLIC_VALUE_AND_JUDGING.md",
+      "bytes": 4298,
+      "sha256": "5e862b5e1fe6d1aec2d7d6d42286d64a5a8d1b0d48e0e2cd21195e29a09b2210"
+    },
+    {
+      "path": "docs/RECIPES.md",
+      "bytes": 2668,
+      "sha256": "c6299e6a3acf4d686c3c44eedb8912e071eae157ae772631ba6135800cfe5ce6"
+    },
+    {
+      "path": "docs/REFLECTION_GUIDE.md",
+      "bytes": 2610,
+      "sha256": "344f9ab49dc6aec8daa4d97657cfe2f3cedaeb29189a20f241bce2b5ee6d73ef"
+    },
+    {
+      "path": "docs/SECURITY_AND_COMPLIANCE.md",
+      "bytes": 2687,
+      "sha256": "100e425fb85dd97f037295a04bba84f6bf6606284ee9c0d2a58efa569b0e506a"
+    },
+    {
+      "path": "docs/TEAM_RULES.md",
+      "bytes": 3261,
+      "sha256": "0537952d7be8d4143c6f6b52f84ffa33cf6a4276393c4e31e77fa014a13569d6"
+    },
+    {
+      "path": "evals/README.md",
+      "bytes": 1566,
+      "sha256": "60daff32fcfaa64f76101b7045805a0c5228cb7e72ca461d2b3b0bb16338d6a7"
+    },
+    {
+      "path": "evals/cases.json",
+      "bytes": 8191,
+      "sha256": "8fdbbeb13bb9ab3550cdf974555d9424ac9a2c54f57826769b593cb6a57619ab"
+    },
+    {
+      "path": "examples/embedding.request.json",
+      "bytes": 82,
+      "sha256": "4625bc0a0463c490cc2014f2b32b221f53d51306b60e4e2bde3ee044d4ba520f"
+    },
+    {
+      "path": "examples/image.request.json",
+      "bytes": 219,
+      "sha256": "21aa07e827e564a1da2fc6d6428e2a83511dc165248f554b2f2141efa3610dba"
+    },
+    {
+      "path": "examples/stt.request.json",
+      "bytes": 42,
+      "sha256": "50d6e08fb225cd7783bfb08b4ebc3a4e417ade51efe12f448a9c50801e1bf031"
+    },
+    {
+      "path": "examples/text.request.json",
+      "bytes": 209,
+      "sha256": "72474f62779f42c3ea5346eac93a1b2121316102adf420f0faf6395224173837"
+    },
+    {
+      "path": "examples/tts.request.json",
+      "bytes": 150,
+      "sha256": "733382578a4e34004d2982356d7cbd001df5966c67c2e0d28ba7b3a051bb8138"
+    },
+    {
+      "path": "examples/video.request.json",
+      "bytes": 188,
+      "sha256": "58c9027724f2add36edb9fe0f5882253c135049579ef82ec031e2ef3dac175ca"
+    },
+    {
+      "path": "prompts/00_start.md",
+      "bytes": 382,
+      "sha256": "9bffe63fc86263fcd2a07ecbebd8608bedd670e24f11b37a35b8430f21270393"
+    },
+    {
+      "path": "prompts/01_choose_concept.md",
+      "bytes": 378,
+      "sha256": "36ba1a1846d520302e09e546f32747d963f18a6a23f34d1a3c9a604c4a3033fd"
+    },
+    {
+      "path": "prompts/02_context_review.md",
+      "bytes": 363,
+      "sha256": "5b6df053dfb275cfda6a249b88b29dba0fa6bcfeda08ef06c2d405a588259df3"
+    },
+    {
+      "path": "prompts/03_produce.md",
+      "bytes": 359,
+      "sha256": "0c22b8ae323aef28daa4caf92e9a45aef8ed352c338367c2caaa197d778f5234"
+    },
+    {
+      "path": "prompts/04_critic.md",
+      "bytes": 303,
+      "sha256": "e22015c8a954779304c20b183d043d0c6f5933f4814bb3b566458f69cbc3e96c"
+    },
+    {
+      "path": "prompts/05_debug.md",
+      "bytes": 326,
+      "sha256": "766dc1f00712345804a949026af112c8858241545d3f8379dccbf394f389c080"
+    },
+    {
+      "path": "prompts/06_final_qa.md",
+      "bytes": 286,
+      "sha256": "65d3b778a303c17ab56ac66ed9453f745bee015c707ba1343bd60fd4f3bdef5c"
+    },
+    {
+      "path": "prompts/07_reflection.md",
+      "bytes": 439,
+      "sha256": "d46c6d191c3d327646a0137872e1609a6b53abbac4d98a0903c3b6700eb66973"
+    },
+    {
+      "path": "prompts/08_submit.md",
+      "bytes": 296,
+      "sha256": "2fa45c0b7df0a8e4b4420d28a4098497cc23f50e0879db1cb8edefff1a55121b"
+    },
+    {
+      "path": "prompts/09_rehearsal.md",
+      "bytes": 298,
+      "sha256": "613233660d3216a82b937823e3434609a2065dc975fa32183a419390f7740c1a"
+    },
+    {
+      "path": "references/ATTRIBUTION.md",
+      "bytes": 692,
+      "sha256": "8b0f63d27c4deed99a0df4e59d74cf576081b3747018dd64fa057ecd7ef790b0"
+    },
+    {
+      "path": "references/SOURCES.md",
+      "bytes": 6929,
+      "sha256": "d282c64f00f86b681aa101e31ff571e4c7a920886dac2bbfbd4272d2cadc57cd"
+    },
+    {
+      "path": "references/source-register.json",
+      "bytes": 8244,
+      "sha256": "a325b3898f3a4d4680b551d82682839d24ab82d777ebce74f7ca17192e618d1d"
+    },
+    {
+      "path": "runtime/cli.py",
+      "bytes": 3175,
+      "sha256": "73407a178fc7efb2326cddadd49004c49c6f96f79954a4f6787954c33e24d0e9"
+    },
+    {
+      "path": "runtime/common.py",
+      "bytes": 5269,
+      "sha256": "93085cc47fb0df567549d7b716aa31587df4149845b59e3dbc0fa61be31f12b8"
+    },
+    {
+      "path": "runtime/configure_mcp.py",
+      "bytes": 612,
+      "sha256": "5ae7e03d942713c0ee438aa8f65dca9be1ad1a35b229d6b557cde7779df9fd14"
+    },
+    {
+      "path": "runtime/gateway.py",
+      "bytes": 14288,
+      "sha256": "3284b59779c35d374a58ca76bdffe6c15e40767c6d94fb24ffa48dba607eb22d"
+    },
+    {
+      "path": "runtime/mcp_server.py",
+      "bytes": 6729,
+      "sha256": "12b1c13b62511c5ae9a78846aa26a8efabd1be7d3e8738941ad0a98ea95fdd81"
+    },
+    {
+      "path": "runtime/media.py",
+      "bytes": 5646,
+      "sha256": "b6adb21ee087e2202f8e6283d593f8c4ea87c943b13342186f655544d3e3da34"
+    },
+    {
+      "path": "skills/INDEX.md",
+      "bytes": 3920,
+      "sha256": "94da530ce7ef73d5a4141b7c1fd9bb5935ae7056a1d1a52598843eac164028ee"
+    },
+    {
+      "path": "skills/aitc-artifact-critic/SKILL.md",
+      "bytes": 2381,
+      "sha256": "3f86de89e22bd7315669decb9e82899347b49e48d4028c9c28ed52d211dc48ed"
+    },
+    {
+      "path": "skills/aitc-artifact-critic/references/contract.md",
+      "bytes": 3261,
+      "sha256": "0537952d7be8d4143c6f6b52f84ffa33cf6a4276393c4e31e77fa014a13569d6"
+    },
+    {
+      "path": "skills/aitc-audio-producer/SKILL.md",
+      "bytes": 2377,
+      "sha256": "3b7cf071b3b6c0f8f046ee090c3b992d183ed0d09294442d4f4e57ac6070a912"
+    },
+    {
+      "path": "skills/aitc-audio-producer/references/contract.md",
+      "bytes": 3261,
+      "sha256": "0537952d7be8d4143c6f6b52f84ffa33cf6a4276393c4e31e77fa014a13569d6"
+    },
+    {
+      "path": "skills/aitc-brief-decoder/SKILL.md",
+      "bytes": 2388,
+      "sha256": "ec382ea6675b7dd6dadde9ae5619d8765b87f21f8b3d63317d5659864283731b"
+    },
+    {
+      "path": "skills/aitc-brief-decoder/references/contract.md",
+      "bytes": 3261,
+      "sha256": "0537952d7be8d4143c6f6b52f84ffa33cf6a4276393c4e31e77fa014a13569d6"
+    },
+    {
+      "path": "skills/aitc-concept-choice/SKILL.md",
+      "bytes": 2428,
+      "sha256": "408cc961e271ae84cca5765c61bd359d7aea6776eee9efeef46078213347817c"
+    },
+    {
+      "path": "skills/aitc-concept-choice/references/contract.md",
+      "bytes": 3261,
+      "sha256": "0537952d7be8d4143c6f6b52f84ffa33cf6a4276393c4e31e77fa014a13569d6"
+    },
+    {
+      "path": "skills/aitc-final-qa/SKILL.md",
+      "bytes": 2370,
+      "sha256": "5508a2c12a775fff02dfd08e2b5c82803b2a549e53e7291c731eb7019660eb5a"
+    },
+    {
+      "path": "skills/aitc-final-qa/references/contract.md",
+      "bytes": 3261,
+      "sha256": "0537952d7be8d4143c6f6b52f84ffa33cf6a4276393c4e31e77fa014a13569d6"
+    },
+    {
+      "path": "skills/aitc-image-director/SKILL.md",
+      "bytes": 2654,
+      "sha256": "07dcfe176c8dd2f941b39dcbdcf19573c168d374ada9499ab8aa935ef2f9ac7a"
+    },
+    {
+      "path": "skills/aitc-image-director/references/contract.md",
+      "bytes": 3261,
+      "sha256": "0537952d7be8d4143c6f6b52f84ffa33cf6a4276393c4e31e77fa014a13569d6"
+    },
+    {
+      "path": "skills/aitc-orchestrator/SKILL.md",
+      "bytes": 3043,
+      "sha256": "1e2f757518c0742784874c7b62a3dadbad6ebf2d9461f4c39d465668d14d25d9"
+    },
+    {
+      "path": "skills/aitc-orchestrator/references/contract.md",
+      "bytes": 3261,
+      "sha256": "0537952d7be8d4143c6f6b52f84ffa33cf6a4276393c4e31e77fa014a13569d6"
+    },
+    {
+      "path": "skills/aitc-production-planner/SKILL.md",
+      "bytes": 2841,
+      "sha256": "3e66ad1848cf6355444869bd5e304cd9bbe5c74de5a8a8062dc2d13eb82e27a5"
+    },
+    {
+      "path": "skills/aitc-production-planner/references/contract.md",
+      "bytes": 3261,
+      "sha256": "0537952d7be8d4143c6f6b52f84ffa33cf6a4276393c4e31e77fa014a13569d6"
+    },
+    {
+      "path": "skills/aitc-solution-reflection/SKILL.md",
+      "bytes": 3046,
+      "sha256": "41412bb086465447b8bf38d606431ba3effa258201229df85dc1170c71683768"
+    },
+    {
+      "path": "skills/aitc-solution-reflection/references/contract.md",
+      "bytes": 3261,
+      "sha256": "0537952d7be8d4143c6f6b52f84ffa33cf6a4276393c4e31e77fa014a13569d6"
+    },
+    {
+      "path": "skills/aitc-submission-controller/SKILL.md",
+      "bytes": 2516,
+      "sha256": "c34d838c7b82576cbbe6452e7cd21a37631df0e973f22569aed12bc961314867"
+    },
+    {
+      "path": "skills/aitc-submission-controller/references/contract.md",
+      "bytes": 3261,
+      "sha256": "0537952d7be8d4143c6f6b52f84ffa33cf6a4276393c4e31e77fa014a13569d6"
+    },
+    {
+      "path": "skills/aitc-systematic-debug/SKILL.md",
+      "bytes": 2311,
+      "sha256": "73c4d0a9621674c6d936b37023d912a20e64a34d97bc9176f75b10bcb08b76f8"
+    },
+    {
+      "path": "skills/aitc-systematic-debug/references/contract.md",
+      "bytes": 3261,
+      "sha256": "0537952d7be8d4143c6f6b52f84ffa33cf6a4276393c4e31e77fa014a13569d6"
+    },
+    {
+      "path": "skills/aitc-text-producer/SKILL.md",
+      "bytes": 2291,
+      "sha256": "44072a9c84c8c2103f498ae04130ab72a09de60e24b95c48ee0024f7d0c6b30c"
+    },
+    {
+      "path": "skills/aitc-text-producer/references/contract.md",
+      "bytes": 3261,
+      "sha256": "0537952d7be8d4143c6f6b52f84ffa33cf6a4276393c4e31e77fa014a13569d6"
+    },
+    {
+      "path": "skills/aitc-toolkit-evaluator/SKILL.md",
+      "bytes": 2439,
+      "sha256": "56cb5dc1964a8adbd36b563d0f0f217a948529a0feaffbf4d575ce47adda8c63"
+    },
+    {
+      "path": "skills/aitc-toolkit-evaluator/references/contract.md",
+      "bytes": 3261,
+      "sha256": "0537952d7be8d4143c6f6b52f84ffa33cf6a4276393c4e31e77fa014a13569d6"
+    },
+    {
+      "path": "skills/aitc-video-director/SKILL.md",
+      "bytes": 2724,
+      "sha256": "eb4d300f20f8e6468b57092709cc3f60e885c7b43f086925e2376363a0205ac9"
+    },
+    {
+      "path": "skills/aitc-video-director/references/contract.md",
+      "bytes": 3261,
+      "sha256": "0537952d7be8d4143c6f6b52f84ffa33cf6a4276393c4e31e77fa014a13569d6"
+    },
+    {
+      "path": "skills/aitc-vietnam-context-review/SKILL.md",
+      "bytes": 3353,
+      "sha256": "1a07847e959a7e959af2db7c4902dd864d01015eb2b9aee16a5fccb6224dc25a"
+    },
+    {
+      "path": "skills/aitc-vietnam-context-review/references/contract.md",
+      "bytes": 3261,
+      "sha256": "0537952d7be8d4143c6f6b52f84ffa33cf6a4276393c4e31e77fa014a13569d6"
+    },
+    {
+      "path": "templates/asset-ledger.csv",
+      "bytes": 136,
+      "sha256": "e10c958111af37b73c2856b17ffc83f73d64f26c01b184de7a4b8a79406e8ccb"
+    },
+    {
+      "path": "templates/brief.md",
+      "bytes": 325,
+      "sha256": "a0d3a8c5429da43e19f078039352aa26325b9e2e9c79c28bb8f0cb1ff6d3989c"
+    },
+    {
+      "path": "templates/btc-questions.md",
+      "bytes": 1022,
+      "sha256": "4a5a526d22e2c990f459508c3f21cc59f45f4c567d05a5d1f3d243cf5fc57060"
+    },
+    {
+      "path": "templates/claims.csv",
+      "bytes": 106,
+      "sha256": "317f47414c5f5116a305c59452d0fcbf0625ba44c08e1cd6742deaca6362ee1b"
+    },
+    {
+      "path": "templates/concept.md",
+      "bytes": 365,
+      "sha256": "4bb61bea4e6bc2e6d59b860787ea2190935235ce1c6d01123fad518b5c4637b0"
+    },
+    {
+      "path": "templates/critic.md",
+      "bytes": 283,
+      "sha256": "bf265de46f1e0c390a4b9b7e891be0f112c649a2c00c596e27f6af85b4d7ca27"
+    },
+    {
+      "path": "templates/decisions.md",
+      "bytes": 417,
+      "sha256": "27e1546e2d1bc55740f3df129192989697e9655892dede3d6a85e8ee884b1a37"
+    },
+    {
+      "path": "templates/final-qa.md",
+      "bytes": 351,
+      "sha256": "1a5215e1db3b7f43c1a0139274efaf97e3ead9363b301d16d7ae81d660268a45"
+    },
+    {
+      "path": "templates/incident.md",
+      "bytes": 189,
+      "sha256": "f5fce9e2dcfc4cd8916d42b3e25068fd0ca1f1032ce54b62803a286aa40ed4b6"
+    },
+    {
+      "path": "templates/premade-inventory.csv",
+      "bytes": 107,
+      "sha256": "ea7b258e56431ed84bedbc8c467d79680af00f28493a02864ebc4cac85417d01"
+    },
+    {
+      "path": "templates/production-plan.csv",
+      "bytes": 136,
+      "sha256": "d5d9ebc977108f1724dd66ed04af39b0f7c5b67f21fa343f97d984f0c4d924fb"
+    },
+    {
+      "path": "templates/pronunciation.csv",
+      "bytes": 60,
+      "sha256": "7a16ecb2c153051250bb8b4966badd97f5a14a502f8eb5e6b34fc1f5da7bd54c"
+    },
+    {
+      "path": "templates/requirements.csv",
+      "bytes": 55,
+      "sha256": "a305ac17e39bb86ca5184ca42c1183f64fa3cbfd2ad3ec22ac54f702b5132898"
+    },
+    {
+      "path": "templates/solution-reflection.md",
+      "bytes": 595,
+      "sha256": "02411b928831a375cd5ffe0f3f962cd86348b0fd50c2af29a5a29ff438c0fec6"
+    },
+    {
+      "path": "templates/storyboard.md",
+      "bytes": 300,
+      "sha256": "3043bb37229a87d7708659fc957b0344cc7f778f9a12ef470c0c826224b1e2be"
+    },
+    {
+      "path": "templates/submission-checklist.md",
+      "bytes": 776,
+      "sha256": "ee6b3e5c9f43a7af894f974b81a75e79dd626a11c3f9ea337c25cff475664103"
+    },
+    {
+      "path": "tests/LAST_RUN.txt",
+      "bytes": 4189,
+      "sha256": "fa0eb0ca71e24d26ef8c936b142d9e05c71551c06c2737240fd9eaab8ce864c5"
+    },
+    {
+      "path": "tests/TEST_REPORT.md",
+      "bytes": 1808,
+      "sha256": "0e103153786d2f3b06e0e6c2821fafd01d6d7f7edec9ef45fdd6c7a23f487306"
+    },
+    {
+      "path": "tests/test_toolkit.py",
+      "bytes": 14922,
+      "sha256": "a165112c88d0eaaca7e9cc03f5a6eaa72cda60bdb46419b9a87fe1a0a7c35c1d"
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+Dùng aitc-solution-reflection. Nguồn: brief, concept, decision log, final version, critic và xác nhận đội. Tổng kết nhận xét đề, cách giải, lý do thực tế và ý nghĩa. Mỗi claim phải có evidence/nhãn ý định hoặc giới hạn. Không bịa insight ban đầu, không phóng đại tác động. Tạo takeaway, bản 45 giây và talking points 3–6 phút cho thành viên theo đóng góp thật.

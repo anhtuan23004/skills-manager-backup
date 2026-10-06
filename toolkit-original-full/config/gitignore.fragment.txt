@@ -1,0 +1,10 @@
+# Human-reviewed fragment ONLY. Never replace BTC .gitignore.
+# Adapt paths after BTC confirms toolkit/work folder placement.
+# Do NOT add .ai-log/ or hide official logs.
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+# Generated media/large responses may exceed repo limits; follow BTC handover rules.
+# Decide exact paths with BTC rather than ignoring all work by default.

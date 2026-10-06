@@ -1,0 +1,1 @@
+Dùng aitc-submission-controller để kiểm tra package đã freeze. Chỉ đưa checklist và các điểm cần người thực hiện. Không tự submit, đổi quyền repo/link hoặc sửa final. Chỉ ghi đã nộp khi người cung cấp trạng thái xác nhận trên hệ thống.

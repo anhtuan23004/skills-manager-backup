@@ -1,0 +1,10 @@
+{
+  "mode": "practice",
+  "end_at": null,
+  "toolkit_scope_approved": false,
+  "official_logging_verified": false,
+  "agent_routes_only_btc": false,
+  "checked_by": "",
+  "btc_permission_reference": "",
+  "note": "Human checklist, not a security boundary or proof of official approval. Competition mode requires an ISO-8601 end_at with +07:00. Do not mark true until actually verified."
+}

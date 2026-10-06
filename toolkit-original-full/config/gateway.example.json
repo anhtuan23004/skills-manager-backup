@@ -1,0 +1,15 @@
+{
+  "base_url": "https://api.thucchien.ai/v1",
+  "allow_web_search": false,
+  "allowed_models": [
+    "gemini-2.5-flash",
+    "gemini-3.1-flash-lite",
+    "nano-banana-2-lite",
+    "nano-banana-2",
+    "veo-3.1-lite-generate-001",
+    "gemini-2.5-flash-preview-tts",
+    "gemini-3.5-transcribe-preview",
+    "gemini-embedding-001"
+  ],
+  "note": "Names are examples from the supplied BTC docs, NOT a live-verified availability list. Confirm model, path prefix and key access on both machines before competition. Add or remove names only after checking BTC docs."
+}

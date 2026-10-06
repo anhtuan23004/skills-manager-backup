@@ -1,0 +1,53 @@
+test_allowed_base (test_toolkit.GatewayTest.test_allowed_base) ... ok
+test_bad_video_id (test_toolkit.GatewayTest.test_bad_video_id) ... ok
+test_base64_image_saved (test_toolkit.GatewayTest.test_base64_image_saved) ... ok
+test_budget_not_retried (test_toolkit.GatewayTest.test_budget_not_retried) ... ok
+test_default_cli_dry_run (test_toolkit.GatewayTest.test_default_cli_dry_run) ... ok
+test_empty_result_rejected (test_toolkit.GatewayTest.test_empty_result_rejected) ... ok
+test_get_rate_bounded_retry (test_toolkit.GatewayTest.test_get_rate_bounded_retry) ... ok
+test_image_n_one (test_toolkit.GatewayTest.test_image_n_one) ... ok
+test_key_info_does_not_persist_secrets (test_toolkit.GatewayTest.test_key_info_does_not_persist_secrets) ... ok
+test_no_endpoint_injection (test_toolkit.GatewayTest.test_no_endpoint_injection) ... ok
+test_post_rate_not_retried (test_toolkit.GatewayTest.test_post_rate_not_retried) ... ok
+test_post_timeout_not_retried (test_toolkit.GatewayTest.test_post_timeout_not_retried) ... ok
+test_reject_bases (test_toolkit.GatewayTest.test_reject_bases) ... ok
+test_remote_media_blocked (test_toolkit.GatewayTest.test_remote_media_blocked) ... ok
+test_text_result (test_toolkit.GatewayTest.test_text_result) ... ok
+test_unknown_model (test_toolkit.GatewayTest.test_unknown_model) ... ok
+test_video_seconds_explicit (test_toolkit.GatewayTest.test_video_seconds_explicit) ... ok
+test_web_disabled (test_toolkit.GatewayTest.test_web_disabled) ... ok
+test_arbitrary_shell_not_exposed (test_toolkit.MCPTest.test_arbitrary_shell_not_exposed) ... ok
+test_exact_four_tools (test_toolkit.MCPTest.test_exact_four_tools) ... ok
+test_extra_argument_rejected (test_toolkit.MCPTest.test_extra_argument_rejected) ... ok
+test_init_protocol (test_toolkit.MCPTest.test_init_protocol) ... ok
+test_manifest_call (test_toolkit.MCPTest.test_manifest_call) ... ok
+test_preinit_tools_denied (test_toolkit.MCPTest.test_preinit_tools_denied) ... ok
+test_stdio_process_handshake_and_manifest (test_toolkit.MCPTest.test_stdio_process_handshake_and_manifest) ... ok
+test_traversal_error (test_toolkit.MCPTest.test_traversal_error) ... ok
+test_contact_sheet_real_media (test_toolkit.MediaTest.test_contact_sheet_real_media) ... ok
+test_contact_sheet_wrong_folder (test_toolkit.MediaTest.test_contact_sheet_wrong_folder) ... ok
+test_normalize_frozen_denied (test_toolkit.MediaTest.test_normalize_frozen_denied) ... ok
+test_normalize_real_media (test_toolkit.MediaTest.test_normalize_real_media) ... ok
+test_probe_real_media (test_toolkit.MediaTest.test_probe_real_media) ... ok
+test_configs_valid_json (test_toolkit.SkillStructureTest.test_configs_valid_json) ... ok
+test_fifteen_skills_and_contracts (test_toolkit.SkillStructureTest.test_fifteen_skills_and_contracts) ... ok
+test_expired_competition (test_toolkit.WorkspaceTest.test_expired_competition) ... ok
+test_freeze_blocks_generation (test_toolkit.WorkspaceTest.test_freeze_blocks_generation) ... ok
+test_freeze_does_not_overwrite (test_toolkit.WorkspaceTest.test_freeze_does_not_overwrite) ... ok
+test_manifest_detects_changes (test_toolkit.WorkspaceTest.test_manifest_detects_changes) ... ok
+test_manifest_no_whole_workspace (test_toolkit.WorkspaceTest.test_manifest_no_whole_workspace) ... ok
+test_manifest_unchanged (test_toolkit.WorkspaceTest.test_manifest_unchanged) ... ok
+test_naive_deadline_rejected (test_toolkit.WorkspaceTest.test_naive_deadline_rejected) ... ok
+test_no_overwrite (test_toolkit.WorkspaceTest.test_no_overwrite) ... ok
+test_package_correct_version (test_toolkit.WorkspaceTest.test_package_correct_version) ... ok
+test_package_refuses_modified (test_toolkit.WorkspaceTest.test_package_refuses_modified) ... ok
+test_permission_false (test_toolkit.WorkspaceTest.test_permission_false) ... ok
+test_permission_practice (test_toolkit.WorkspaceTest.test_permission_practice) ... ok
+test_reject_symlink (test_toolkit.WorkspaceTest.test_reject_symlink) ... ok
+test_reject_unsafe_paths (test_toolkit.WorkspaceTest.test_reject_unsafe_paths) ... ok
+test_relative_path (test_toolkit.WorkspaceTest.test_relative_path) ... ok
+
+----------------------------------------------------------------------
+Ran 48 tests in 2.650s
+
+OK

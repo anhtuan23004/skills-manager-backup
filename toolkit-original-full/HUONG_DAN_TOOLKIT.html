@@ -1,0 +1,617 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI Thực Chiến — Toolkit Chung khảo</title><style>body{margin:0;background:#f6f7f8;color:#19232e;font:16px/1.7 system-ui,-apple-system,"Segoe UI",sans-serif}aside{position:fixed;top:0;bottom:0;left:0;width:235px;padding:28px 20px;box-sizing:border-box;background:#152431;color:white;overflow:auto}aside h2{font-size:18px;margin:0 0 8px}aside small{color:#b9c8d1}aside nav{margin-top:24px}aside a{display:block;color:#dce7ed;text-decoration:none;margin:4px 0;padding:7px 10px;border-radius:4px}aside a:hover{background:#2c4352}main{max-width:1060px;margin-left:235px;padding:30px 44px 80px}section{background:white;border:1px solid #e1e6e9;border-radius:6px;padding:30px 36px;margin:0 0 26px;scroll-margin-top:18px}h1{font-size:28px;line-height:1.3;margin:0 0 20px}h2{font-size:21px;margin-top:28px}h3{font-size:18px}table{width:100%;border-collapse:collapse;font-size:14px;line-height:1.55;display:block;overflow-x:auto}th,td{padding:11px 13px;border:1px solid #dce3e8;text-align:left;vertical-align:top}th{background:#eef3f5}pre{padding:17px;background:#f1f4f6;border-radius:4px;overflow:auto;font-size:13px;line-height:1.6}code{font-family:ui-monospace,Consolas,monospace;font-size:.9em}a{color:#1b5b77}strong{font-weight:650}p,li{max-width:92ch}li{margin:7px 0}@media(max-width:900px){aside{position:static;width:auto;padding:20px}aside a{display:inline-block;font-size:14px}aside nav{margin-top:10px}main{margin:0;padding:18px}section{padding:24px 18px}h1{font-size:24px}}@media print{aside{display:none}main{margin:0;padding:0;max-width:none}section{border:none;break-before:page}pre{white-space:pre-wrap}body{font-size:11pt}}</style></head><body><aside><h2>AI THỰC CHIẾN</h2><small>Toolkit Chung khảo<br></small><nav><a href="#start">Bắt đầu</a><a href="#guide">Hướng dẫn chính</a><a href="#flow">Flow hai máy</a><a href="#context">Bối cảnh &amp; đánh giá</a><a href="#mcp">Chọn MCP</a><a href="#install">Cài đặt &amp; chạy</a><a href="#reflection">Video reflection</a><a href="#test">Kiểm thử</a></nav></aside><main><section id="start"><h1>AI Thực Chiến — Toolkit Chung khảo</h1>
+<h2>Bắt đầu ở đâu?</h2>
+<ol>
+<li>Đọc <code>GUIDE.md</code> để hiểu flow, vai trò và các điểm phải chốt.</li>
+<li>Đọc <code>docs/INSTALL_AND_RUN.md</code>, khai báo những thành phần đã được BTC cho phép; không copy cả toolkit vào repo BTC một cách mặc định.</li>
+<li>Trong agent đã cấu hình mọi AI qua Gateway BTC, mở <code>prompts/00_start.md</code> cùng đề bài. Agent dùng <code>skills/aitc-orchestrator/SKILL.md</code> để chọn skill cần thiết.</li>
+<li>Dùng <code>docs/OPERATING_FLOW.md</code> làm bảng điều hành trên 2 máy. Ghi quyết định thực tế vào <code>templates/decisions.md</code>.</li>
+<li>Khi gần hoàn tất: Final QA → Solution Reflection → đội duyệt → freeze trước T+120 → nộp đúng yêu cầu.</li>
+</ol>
+<h2>Gói này có gì?</h2>
+<table>
+<thead>
+<tr>
+  <th>Thư mục</th>
+  <th>Nội dung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>skills/</code></td>
+  <td>15 skill viết mới; mỗi skill có SKILL.md và contract.</td>
+</tr>
+<tr>
+  <td><code>prompts/</code></td>
+  <td>10 prompt gọi theo giai đoạn.</td>
+</tr>
+<tr>
+  <td><code>templates/</code></td>
+  <td>16 biểu mẫu trống: requirements, decisions, storyboard, asset ledger, claims, QA, reflection, submission…</td>
+</tr>
+<tr>
+  <td><code>runtime/</code></td>
+  <td>Python CLI gọi Gateway, kiểm tra/chuẩn hóa media, manifest/freeze/package và MCP local 4 tool.</td>
+</tr>
+<tr>
+  <td><code>config/</code></td>
+  <td>Cấu hình ví dụ; live network mặc định chưa được bật.</td>
+</tr>
+<tr>
+  <td><code>examples/</code></td>
+  <td>6 payload kỹ thuật để tập API; không dùng output tập luyện làm bài thi thật.</td>
+</tr>
+<tr>
+  <td><code>evals/</code></td>
+  <td>16 tình huống kiểm tra hành vi skill. Chưa chạy benchmark LLM thực tế.</td>
+</tr>
+<tr>
+  <td><code>tests/</code></td>
+  <td>48 kiểm thử offline đã chạy đạt trong môi trường tạo gói; báo cáo giới hạn đi kèm.</td>
+</tr>
+<tr>
+  <td><code>docs/</code></td>
+  <td>Vận hành, cài đặt, chọn MCP, đánh giá giá trị, an toàn, video reflection.</td>
+</tr>
+<tr>
+</tbody>
+</table>
+<h2>Ba ranh giới phải giữ</h2>
+<ul>
+<li><strong>Được chuẩn bị skills/prompts/MCP:</strong> theo thông tin đội cung cấp. <strong>Code wrapper, helper, template, font, stock media, tài nguyên đi kèm</strong> không tự động thuộc ngoại lệ này; phải xác nhận phạm vi riêng.</li>
+<li><strong>Skill là chỉ dẫn; MCP là công cụ; model của agent là một lớp khác.</strong> Cài skill của nguồn nào không bắt buộc gọi model của nguồn đó. Mọi AI trong phiên thi vẫn phải qua BTC.</li>
+<li><strong>Gói này chưa được BTC phê duyệt và chưa được kiểm thử live với Gateway/host của đội.</strong> Không có tuyên bố “được phép toàn bộ”, “an toàn tuyệt đối” hoặc “bảo đảm điểm cao”.</li>
+</ul>
+<p>MCP là tùy chọn. Đội có thể dùng skills + công cụ file/media có sẵn trong agent và CLI, không bắt buộc cài thêm MCP.</p>
+</section><section id="guide"><h1>Bộ toolkit Chung khảo AI Thực Chiến</h1>
+<h2>1. Phạm vi và cách đọc</h2>
+<p>Đây là bộ công cụ chuẩn bị cho <strong>thử thách tạo ảnh, video, văn bản, âm thanh hoặc tổ hợp theo đề</strong>. Không ép mọi bài thành website, chatbot hay MVP.</p>
+<p>Có ba lớp thông tin: <strong>BTC quy định</strong>; <strong>đội xác nhận</strong> (được chuẩn bị skills/prompts/MCP); <strong>đề xuất nội bộ</strong> (flow, giờ chốt trung gian, checklist chất lượng và công cụ trong gói). Gặp xung đột hoặc khoảng trống, hỏi BTC; không tự coi đề xuất này là luật.</p>
+<h2>2. Tính chất cuộc thi ảnh hưởng cách làm như thế nào?</h2>
+<p><strong>Đề xuất áp dụng:</strong> sản phẩm phải trả lời tốt đề, hướng tới người nhận cụ thể, dùng tiếng Việt/bối cảnh Việt Nam phù hợp khi có liên quan, có chất lượng thể hiện và chứng minh được quá trình tạo. Không suy ra rằng đề nào cũng phải có quốc kỳ, hình ảnh công an, khẩu hiệu, lời ca ngợi hoặc câu chuyện an ninh. Không gọi việc dùng model nước ngoài qua API là tự huấn luyện/làm chủ model nền tảng.</p>
+<p>Một sản phẩm nghệ thuật hoặc giải trí vẫn có thể phù hợp khi đề yêu cầu. “Giá trị” không chỉ là tuyên truyền hay hữu dụng công vụ. Không tự bịa tác động đo lường hoặc phỏng đoán gu BGK. Xem <code>docs/PUBLIC_VALUE_AND_JUDGING.md</code>.</p>
+<h2>3. Kiến trúc bộ công cụ</h2>
+<pre><code class="language-text">Đề + luật + tài nguyên hợp lệ
+           ↓
+Orchestrator — chọn skill, chia việc, kiểm soát thời gian
+           ↓
+Brief → concept → kiểm tra bối cảnh → production plan
+           ↓
+TEXT / IMAGE / VIDEO / AUDIO (chỉ nhánh cần dùng)
+           ↓
+Critic dựa trên artifact thật → sửa lỗi lớn nhất
+           ↓
+Final QA → Reflection có bằng chứng → người duyệt → freeze
+           ↓
+Nộp file/source/prompts theo đề → quay video sau thi
+</code></pre>
+<p><strong>Skills</strong> quyết định trình tự/cách phân tích. <strong>Prompts</strong> là lệnh gọi theo giai đoạn. <strong>Gateway</strong> là đường gọi AI. <strong>MCP/CLI local</strong> làm thao tác kỹ thuật. <strong>Templates/log</strong> giữ thông tin và bằng chứng. Các lớp này không thay thế nhau.</p>
+<h2>4. Bộ 15 skill</h2>
+<table>
+<thead>
+<tr>
+  <th>ID</th>
+  <th>Skill</th>
+  <th>Sản phẩm của bước</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>00</td>
+  <td>Orchestrator</td>
+  <td>Bảng việc trên 2 máy; skill cần dùng; thời điểm dừng.</td>
+</tr>
+<tr>
+  <td>01</td>
+  <td>Brief Decoder</td>
+  <td>Danh sách yêu cầu, định dạng, tiêu chí chính thức, điểm chưa rõ.</td>
+</tr>
+<tr>
+  <td>02</td>
+  <td>Concept Choice</td>
+  <td>Tối đa 3 hướng; 1 hướng do đội chốt; lý do và phần không làm.</td>
+</tr>
+<tr>
+  <td>03</td>
+  <td>Vietnam Context Review</td>
+  <td>Kiểm tra bối cảnh/người nhận/giá trị/độ tin cậy, không tự đổi đề.</td>
+</tr>
+<tr>
+  <td>04</td>
+  <td>Production Planner</td>
+  <td>Shot list/content plan, phụ thuộc asset, ngân sách, fallback.</td>
+</tr>
+<tr>
+  <td>05</td>
+  <td>Text Producer</td>
+  <td>Script/copy/nội dung đúng loại đầu ra.</td>
+</tr>
+<tr>
+  <td>06</td>
+  <td>Image Director</td>
+  <td>Visual direction, prompt ảnh, nhận diện nhất quán, typography.</td>
+</tr>
+<tr>
+  <td>07</td>
+  <td>Video Director</td>
+  <td>Cảnh ngắn tập trung, hành động/camera, job và continuity.</td>
+</tr>
+<tr>
+  <td>08</td>
+  <td>Audio Producer</td>
+  <td>Voice-over, cách đọc, transcript, kiểm tra âm thanh.</td>
+</tr>
+<tr>
+  <td>09</td>
+  <td>Artifact Critic</td>
+  <td>PASS/FAIL/UNVERIFIED có vị trí bằng chứng; 3 sửa đổi ưu tiên.</td>
+</tr>
+<tr>
+  <td>10</td>
+  <td>Systematic Debug</td>
+  <td>Nguyên nhân khả dĩ; thử một giả thuyết; dừng tạo tác vụ trả phí trùng.</td>
+</tr>
+<tr>
+  <td>11</td>
+  <td>Final QA</td>
+  <td>Đủ đề + nội dung + kỹ thuật + nguồn gốc; người duyệt.</td>
+</tr>
+<tr>
+  <td>12</td>
+  <td>Solution Reflection</td>
+  <td>Nhận xét đề, quyết định, ý nghĩa, talking points 3–6 phút.</td>
+</tr>
+<tr>
+  <td>13</td>
+  <td>Submission Controller</td>
+  <td>Kiểm tra bản cuối/repo/quyền truy cập; đội tự nộp.</td>
+</tr>
+<tr>
+  <td>14</td>
+  <td>Toolkit Evaluator</td>
+  <td>Chạy đề tập; so sánh với/không skill; lỗi cần sửa trước thi.</td>
+</tr>
+</tbody>
+</table>
+<p>Mỗi skill có đầu vào, quy trình, đầu ra, tiêu chuẩn kiểm tra và điều kiện chuyển cho người. Không load cả 15 skill cho một tác vụ nhỏ. File <code>skills/INDEX.md</code> chỉ đường đến từng SKILL.md.</p>
+<h2>5. Quy trình 120 phút trên 2 máy</h2>
+<p>Tổng khung 120 phút +10 phút nộp dựa trên tài liệu training.</p>
+<table>
+<thead>
+<tr>
+  <th>Thời gian</th>
+  <th>Máy 1 — Nội dung/tạo sinh</th>
+  <th>Máy 2 — Sản xuất/kiểm tra</th>
+  <th>Cổng quyết định</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>00–08</td>
+  <td>Đọc đề, trích yêu cầu.</td>
+  <td>Kiểm tra tài nguyên, định dạng và trạng thái logging.</td>
+  <td>Đội xác nhận đầu ra; điểm mơ hồ được nêu rõ.</td>
+</tr>
+<tr>
+  <td>08–18</td>
+  <td>Đưa tối đa 3 concept, chạy context review.</td>
+  <td>Ước lượng thời gian/chi phí, thử kết nối nhỏ được phép.</td>
+  <td>Đội chọn concept, ghi lý do thật.</td>
+</tr>
+<tr>
+  <td>18–30</td>
+  <td>Script, storyboard hoặc outline; asset mẫu.</td>
+  <td>Chuẩn bị cấu trúc lắp ghép, tên file; kiểm tra asset mẫu.</td>
+  <td>Chứng minh pipeline khả thi; không chờ cuối mới thử export.</td>
+</tr>
+<tr>
+  <td>30–65</td>
+  <td>Tạo asset theo nhánh; ghi job ID/version.</td>
+  <td>Lắp bản nháp từ asset đã duyệt; text/audio có thể chạy ở đây.</td>
+  <td>Có bản thô thể hiện đủ cấu trúc, không chỉ asset rời.</td>
+</tr>
+<tr>
+  <td>65–90</td>
+  <td>Sửa asset lỗi, không phát triển nhiều hướng mới.</td>
+  <td>Critic, continuity, thông điệp, thời lượng, âm thanh.</td>
+  <td>Chọn bản cuối; bỏ phụ kiện không cần.</td>
+</tr>
+<tr>
+  <td>90–100</td>
+  <td>Chỉ sửa lỗi quan trọng.</td>
+  <td>Export bản ứng viên, mở/nghe/xem file thực.</td>
+  <td>Không dùng metadata để thay cho kiểm tra nội dung.</td>
+</tr>
+<tr>
+  <td>100–112</td>
+  <td>Reflection từ bản hiện có + decision log.</td>
+  <td>Final QA, manifest, đối chiếu source/prompt.</td>
+  <td>Đội duyệt lời giải thích; cập nhật nếu final thay đổi.</td>
+</tr>
+<tr>
+  <td>112–120</td>
+  <td>Duyệt version cuối; không mở concept mới.</td>
+  <td>Freeze file, commit/push đúng quy trình BTC, chuẩn bị nộp.</td>
+  <td>Final và reflection nói về cùng một version.</td>
+</tr>
+<tr>
+  <td>120–130</td>
+  <td>Kiểm tra tên/link/attachment cùng người nộp.</td>
+  <td>Một người thao tác nộp và giữ xác nhận.</td>
+  <td>Chỉ nộp; không tiếp tục tạo/sửa sản phẩm.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ba vai trò:</strong> người chốt concept/ý nghĩa; người điều khiển AI/pipeline; người lắp ghép/QA. Sau bước concept, luôn có người kiểm tra độc lập. Không để hai máy đồng thời sửa một file; phân thư mục và người sở hữu. Hai máy cùng chịu budget/rate limit của đội. [B2]</p>
+<h2>6. Bộ công cụ thực thi</h2>
+<h3>Dùng mặc định</h3>
+<ul>
+<li>Agent đã xác minh mọi AI qua Gateway BTC; nạp SKILL.md theo yêu cầu.</li>
+<li>Git và hook BTC giữ nguyên.</li>
+<li>Công cụ biên tập thông thường của đội; không bật tính năng AI ngoài BTC.</li>
+<li>Gateway CLI và media CLI của gói <strong>chỉ khi phạm vi mã tiện ích chuẩn bị trước được BTC xác nhận</strong>.</li>
+</ul>
+<h3>MCP local tùy chọn</h3>
+<p><code>runtime/mcp_server.py</code> có đúng 4 tool: <code>aitc_media_probe</code>, <code>aitc_contact_sheet</code>, <code>aitc_artifact_manifest</code>, <code>aitc_verify_manifest</code>. Không có tool tự gọi model, upload, tự submit, shell tùy ý hoặc Git mutation. Mã Python viết mới, hỗ trợ tập con MCP stdio; không phải sản phẩm chính thức của MCP/Anthropic/Microsoft.</p>
+<p>Nếu host đã đọc file/chạy CLI tốt, không cần thêm MCP. Filesystem/Git reference server và Playwright MCP được nghiên cứu để chọn khi cần, không được cài tự động hoặc xem là an toàn/chấp thuận sẵn. [W9–W13]</p>
+<h2>7. Chuẩn bị quyết định và video quay sau thi</h2>
+<p>Trong lúc làm, chỉ cần ghi vài quyết định lớn: chọn concept nào; vì sao; đổi cảnh/cách thể hiện nào; thử nghiệm nào buộc đổi hướng. Ghi đúng lý do, kể cả vì giới hạn thời gian/chi phí.</p>
+<p>Reflection skill lập chuỗi <strong>yêu cầu → quyết định thực tế → bằng chứng trong output → ý nghĩa dự kiến</strong>. Phân biệt sự thật quan sát được, lý do đội xác nhận, tác động mong muốn và hạn chế. Không biến “muốn giúp người xem nhớ” thành “đã tăng nhận thức 80%”. Không đổi tên skill nhằm che việc dùng AI hỗ trợ tổng kết.</p>
+<p>Chạy reflection trước khi hết giờ là chính sách bảo thủ trong gói, do tài liệu chưa xác nhận rõ quyền dùng AI sau T+120 để soạn video. Video sau thi dùng lời của đội trên bản đã duyệt.</p>
+<h2>8. Mức sẵn sàng của gói</h2>
+<p>Đã chạy 48 kiểm thử offline: cấu trúc 15 skill, các guard cơ bản, HTTP mô phỏng, JSON-RPC stdio, FFmpeg/FFprobe, freeze/manifest/package. <strong>Không suy ra từ kết quả này rằng prompt đã được benchmark tốt, host đã routing đúng, hook BTC đủ log, hay live API tương thích.</strong> Xem <code>tests/TEST_REPORT.md</code>.</p>
+<p>Trước khi dùng chính thức, đội phải hoàn thành: kiểm tra quyền tài nguyên; live smoke-test BTC; kiểm tra hook ghi/gửi; rehearsal đủ 2 máy/120 phút; đọc output thật; chốt người nộp. Không đưa dữ liệu mật, API key hoặc hồ sơ cá nhân vào prompt để “kiểm tra”.</p>
+</section><section id="flow"><h1>Runbook trên 2 máy</h1>
+<p>Nguồn thời gian/thiết bị: 'đã có trên file hướng dẫn của BTC'. Các giờ chốt giữa phiên là đề xuất đội.</p>
+<h2>Khi đề mở</h2>
+<p>Mở <code>prompts/00_start.md</code>. Nạp đề đầy đủ và tài nguyên được phép. Chỉ nạp skill orchestrator/brief decoder trước. Đội trưởng xác nhận <strong>loại file cuối</strong>, yêu cầu bắt buộc, tiêu chí có thật và câu chưa rõ. Không tự xem đề ảnh/video thành bài ứng dụng.</p>
+<h2>Khi chọn concept</h2>
+<p>Gọi <code>prompts/01_choose_concept.md</code>, tối đa 3 hướng; đánh giá phù hợp đề/ý nghĩa/chất lượng/thời gian/rủi ro. Máy B phản biện khả năng hoàn thành. <code>02_context_review.md</code> kiểm tra bối cảnh và độ tin cậy; không làm thành một vòng “đổi đề cho hợp cơ quan bảo trợ”. Đội chốt, ghi <code>decisions.md</code>.</p>
+<h2>Khi sản xuất</h2>
+<p>Planner chia đầu ra thành phần nhỏ, đặt owner A/B, đặt thời gian duyệt mẫu, nguồn asset và fallback. Máy A tạo asset; Máy B xuất thử/lắp bản thô ngay khi có mẫu. Tên file gồm cảnh/phiên bản/máy, không ghi đè: <code>scene02_A_v03.mp4</code>.</p>
+<table>
+<thead>
+<tr>
+  <th>Loại đề</th>
+  <th>Nhánh ưu tiên</th>
+  <th>Bản nháp phải có</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Văn bản</td>
+  <td>outline → draft → critique → rewrite</td>
+  <td>Toàn bộ cấu trúc, không chỉ mở bài.</td>
+</tr>
+<tr>
+  <td>Ảnh/poster</td>
+  <td>visual direction → bố cục → ảnh → typography → QA</td>
+  <td>Đủ thông điệp và chữ bắt buộc, không chỉ ảnh đẹp.</td>
+</tr>
+<tr>
+  <td>Video</td>
+  <td>storyboard → keyframe/clip → VO → assemble → QA</td>
+  <td>Từ đầu đến cuối, dù asset chưa đều chất lượng.</td>
+</tr>
+<tr>
+  <td>Audio</td>
+  <td>script → pronunciation → TTS → edit → listen</td>
+  <td>Nội dung hoàn chỉnh, giọng nghe được.</td>
+</tr>
+<tr>
+  <td>Multimodal</td>
+  <td>Các nhánh có cùng concept/asset ledger</td>
+  <td>Đồng nhất nhân vật, câu chuyện và thuật ngữ.</td>
+</tr>
+</tbody>
+</table>
+<h2>Khi critique</h2>
+<p>Mở chính file hoặc nghe/xem thực tế; input vào critic là đề + version hiện tại + bằng chứng quan sát. Model không có công cụ đọc modality đó phải đánh dấu UNVERIFIED. Mỗi vòng giữ điểm tốt và sửa tối đa 3 lỗi lớn; không regenerate toàn bộ vì cảm giác.</p>
+<h2>Khi gần hết giờ</h2>
+<p>T+90 chốt direction; T+100–112 QA/Reflection song song. Reflection ghi version đang nói tới. Sau sửa final, cập nhật các nhận xét liên quan trước freeze. T+112–120 đội duyệt và freeze, commit/push theo BTC. T+120–130 chỉ nộp.</p>
+<h2>Phân vùng file và giao việc</h2>
+<ul>
+<li>Cùng một repo BTC, nhưng mỗi file có một người sửa chính. Chỉ merge sau khi người nhận biết version nào đã duyệt.</li>
+<li>Media lớn không ép vào Git thông thường nếu vượt giới hạn; dùng đường nộp BTC cho phép, giữ manifest/asset ledger. Không tự chia sẻ công khai.</li>
+<li>Luôn có một người duyệt final độc lập. Commit/push không chứng minh nội dung đã đúng đề; cần cả QA.</li>
+<li>Có thể dùng máy B chạy AI text/audio, không cứng nhắc coi chỉ máy A được gọi AI. Budget vẫn chung.</li>
+</ul>
+<h2>Khi có sự cố</h2>
+<p>Budget429: dừng, kiểm tra chi tiêu. Rate429: chờ có giới hạn. Timeout POST tạo video: không bấm tạo lại ngay, lưu tình trạng chưa rõ/job nếu có. Mất logging/giám sát: ghi nhận và báo BTC, không tự chế hoặc sửa log. Không đổi sang chatbot/API ngoài BTC để “cứu bài”.</p>
+</section><section id="context"><h1>Bối cảnh Việt Nam, giá trị của bài và góc nhìn đánh giá</h1>
+<h2>Điều có nguồn và điều không có</h2>
+<p>Định hướng ứng dụng tại Việt Nam, hiệu quả kinh tế–xã hội, đổi mới sáng tạo, AI có trách nhiệm; rubric chi tiết công bố theo vòng. <strong></p>
+<p>Checklist dưới đây là <strong>đề xuất kiểm tra nội bộ</strong>, không phải rubric/điểm chấm chính thức. Đề và tiêu chí vòng thi luôn đứng trước các gợi ý này.</p>
+<table>
+<thead>
+<tr>
+  <th>Trục kiểm tra</th>
+  <th>Câu hỏi thực tế</th>
+  <th>Bằng chứng phù hợp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Đúng đề</td>
+  <td>Có tạo đúng loại output, thông điệp và yêu cầu bắt buộc không?</td>
+  <td>Đối chiếu từng requirement với trang/cảnh/câu.</td>
+</tr>
+<tr>
+  <td>Người nhận cụ thể</td>
+  <td>Ai xem/đọc/nghe; họ cần hiểu/cảm nhận/làm gì?</td>
+  <td>Mức từ ngữ, bối cảnh, tình huống, cách thể hiện.</td>
+</tr>
+<tr>
+  <td>Ý nghĩa trong sản phẩm</td>
+  <td>Bản thân tác phẩm đã truyền tải ý đồ chưa?</td>
+  <td>Cảnh/chữ/âm thanh cụ thể, không chỉ lời giải thích sau thi.</td>
+</tr>
+<tr>
+  <td>Bối cảnh Việt Nam</td>
+  <td>Chi tiết tiếng Việt, phong tục, địa danh, đời sống có đúng nếu dùng không?</td>
+  <td>Nguồn được phép; team review; điểm chưa xác minh.</td>
+</tr>
+<tr>
+  <td>Chất lượng thể hiện</td>
+  <td>Thông điệp rõ, mỹ thuật/nhịp kể/âm thanh nhất quán không?</td>
+  <td>Xem và nghe final, các lỗi được chỉ vị trí.</td>
+</tr>
+<tr>
+  <td>AI và con người</td>
+  <td>AI tạo phần nào, người kiểm soát phần nào?</td>
+  <td>Prompt, decision log, lịch sử chỉnh sửa.</td>
+</tr>
+<tr>
+  <td>Trách nhiệm</td>
+  <td>Có dữ liệu cá nhân, fake endorsement, tạo hiểu nhầm hoặc claim chưa kiểm chứng không?</td>
+  <td>Claims/asset ledger, phạm vi quyền, team sign-off.</td>
+</tr>
+<tr>
+  <td>Tính nguyên bản</td>
+  <td>Cách giải/asset do đội tạo trong phạm vi được phép?</td>
+  <td>Nguồn, phiên bản, prompt/source và xác nhận tài nguyên.</td>
+</tr>
+</tbody>
+</table>
+<h2>Không đồng nhất giá trị với hình thức chính trị</h2>
+<p>Không tự thêm quốc huy, cấp hiệu, bản đồ, logo cơ quan hoặc giả lập văn bản/chức danh chính thức để tạo uy tín. Nếu đề đòi hỏi chúng, dùng tài nguyên đã được cấp/cho phép và xác minh chi tiết. Đây là biện pháp kiểm soát chất lượng/hiểu nhầm của toolkit, không phải kết luận pháp lý về mọi trường hợp.</p>
+<p>Không ép mọi ý tưởng thành công cụ giám sát hoặc phát hiện vi phạm. Không loại bỏ hài hước, nghệ thuật, giải trí chỉ vì nhà nước bảo trợ. Mức nghiêm túc và phong cách phải theo đề/khán giả.</p>
+<h2>“Make in Vietnam” cần nói chính xác</h2>
+<p>Phát triển cách giải và sản phẩm cho bối cảnh Việt Nam khác với tự huấn luyện model Việt. Nếu đội dùng Gateway, mô tả đúng năng lực: thiết kế concept, chỉ đạo model, phối hợp modality, kiểm chứng, hoàn thiện artifact. Không nhận sở hữu công nghệ nền tảng do nhà cung cấp tạo.</p>
+<h2>Ví dụ hoàn toàn giả định để luyện lập luận</h2>
+<p>Giả sử đề yêu cầu video giúp người mới dùng dịch vụ số nhận biết một tình huống rủi ro. Có thể chọn kể một tình huống quen thuộc và ba thao tác dễ nhớ thay vì dồn nhiều thuật ngữ. Ý nghĩa là <strong>muốn</strong> người xem nhận biết và có hành động rõ. Đội chỉ có thể nói video <strong>đã thể hiện</strong> ba thao tác; không thể nói <strong>đã giảm số vụ rủi ro</strong> nếu chưa đo. Đây không phải dự đoán đề thi thật.</p>
+<h2>Cách tự đánh giá</h2>
+<p>Dùng <code>PASS / PARTIAL / FAIL / UNVERIFIED / NOT APPLICABLE</code>, kèm vị trí bằng chứng và một sửa đổi có ích. Không gán trọng số tự chế hoặc tổng điểm “90/100” rồi diễn giải là điểm BGK. Nếu BTC cấp rubric, thay tiêu chí nội bộ bằng rubric đó và giữ nguyên cách diễn đạt.</p>
+</section><section id="mcp"><h1>Chọn skill/MCP có căn cứ, không chọn theo số lượng</h1>
+<h2>Tiêu chuẩn lựa chọn của toolkit</h2>
+<p>Ưu tiên nguồn gốc rõ, phạm vi chức năng giải thích được, schema/cách chạy kiểm tra được, quyền vừa đủ và phù hợp thi tạo artifact. Số sao GitHub hoặc logo nhà cung cấp không chứng minh độ an toàn, tính tương thích hay việc BTC cho phép.</p>
+<h2>Profile MCP đề xuất</h2>
+<table>
+<thead>
+<tr>
+  <th>Thành phần</th>
+  <th>Trạng thái đề xuất</th>
+  <th>Quyền và lưu ý</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Công cụ file/shell native của host</td>
+  <td>Ưu tiên nếu đã đủ</td>
+  <td>Quyền host cũng phải kiểm tra; không tự cấp toàn máy.</td>
+</tr>
+<tr>
+  <td><code>aitc-local-media-qa</code> trong gói</td>
+  <td>Tùy chọn cho QA media/manifest</td>
+  <td>4 tool, stdio local, một thư mục làm việc; không gọi model. Mã mới, chưa được host/BTC chứng nhận.</td>
+</tr>
+<tr>
+  <td>Filesystem reference MCP [W9,W10]</td>
+  <td>Chỉ khi host không có file tool phù hợp</td>
+  <td>Roots của client có thể thay allowlist args; kiểm tra phạm vi thực sự. Không trỏ home hoặc repo root có secret/hook.</td>
+</tr>
+<tr>
+  <td>Git reference MCP [W11]</td>
+  <td>Không bật mặc định</td>
+  <td>Git CLI do người thao tác đủ cho 2 máy; tránh reset/force-push/tự đổi remote hoặc public repo.</td>
+</tr>
+<tr>
+  <td>Microsoft Playwright MCP [W12]</td>
+  <td>Chỉ khi đề thực sự cần web/HTML/interaction</td>
+  <td>Profile trình duyệt riêng, địa chỉ cần dùng; không điều khiển chatbot ngoài BTC hay auto-submit. Allowed origins không phải security boundary.</td>
+</tr>
+<tr>
+  <td>External AI/search/research MCP</td>
+  <td>Tắt mặc định</td>
+  <td>Không dùng làm đường vòng; AI/search chỉ theo tài nguyên/quyền BTC xác nhận.</td>
+</tr>
+</tbody>
+</table>
+<p>Các MCP reference được chính dự án mô tả là ví dụ/tham chiếu, không bảo đảm sẵn sàng production. Không tự cài <code>latest</code> trong phiên thi; chọn phiên bản, ghi lại, thử trên hai máy trước khi khóa cấu hình.</p>
+<h2>Bốn tool local được cung cấp</h2>
+<ol>
+<li><code>aitc_media_probe(path)</code>: đọc codec/duration/dimensions; không chấm nội dung.</li>
+<li><code>aitc_contact_sheet(path, output, frames)</code>: tạo PNG mới dưới qa/ để xem một số khung hình; không thay xem cả video hoặc nghe audio.</li>
+<li><code>aitc_artifact_manifest(directory)</code>: size/SHA-256; không đóng băng hay nộp.</li>
+<li><code>aitc_verify_manifest(manifest_path)</code>: phát hiện sửa/thêm/xóa so với bản lưu.</li>
+</ol>
+<p>MCP server không có generic file write, upload, AI sampling, network client, Git mutation, task submission. Đây là phạm vi chức năng, <strong>không phải sandbox hệ điều hành</strong>. FFmpeg có quyền của process; chỉ dùng input đáng tin, phần mềm được cập nhật và quyền OS hạn chế. Chặn đường dẫn ở ứng dụng không bảo vệ khỏi mọi race condition hoặc lỗ hổng decoder.</p>
+</section><section id="install"><h1>Cài đặt, luyện thử và bật trong thi</h1>
+<h2>1. Chọn mức dùng</h2>
+<p><strong>Mức A — chỉ skills/prompts:</strong> đọc <code>skills/INDEX.md</code>; gọi SKILL.md phù hợp trong agent đã dùng Gateway BTC. Không cần Python/MCP riêng.</p>
+<p><strong>Mức B — thêm công cụ local:</strong> Python 3.10+, FFmpeg và FFprobe trong PATH. Mã Python dùng standard library, không cần pip package cho runtime. Các binary hệ thống phải được cài/kiểm tra trước thi. Có thể chạy <code>python --version</code>, <code>ffmpeg -version</code>, <code>ffprobe -version</code>.</p>
+<p><strong>Mức C — MCP QA:</strong> thêm server local 4 tool nếu host có MCP stdio và đội cần thao tác qua agent. Không cài thêm chỉ vì bộ toolkit có nó.</p>
+<p><strong>Trước khi chuyển sang thi:</strong> xác nhận phạm vi code/helper/templates được chuẩn bị trước. Không tự sao chép cả gói vào repo BTC. Không chép đè <code>.agents</code>, <code>.ai-log</code>, <code>.claude</code>, <code>.codex</code>, <code>.cursor</code>, <code>.gemini</code>, <code>.github</code>, <code>scripts</code> hoặc hook BTC. Host và cách discover skill chưa biết nên gói không tự sửa cấu hình IDE.</p>
+<h2>2. Đặt thư mục</h2>
+<p>Giải nén toolkit ở thư mục do đội quản lý. Trong <strong>buổi luyện</strong>, tạo workspace riêng:</p>
+<pre><code class="language-text">practice-workspace/
+  ops/                gateway.json, permission.json
+  requests/           payload của lần tập
+  assets/             media đầu vào được phép
+  runs/               kết quả gọi API theo máy và ID
+  qa/                 contact sheet, manifest, kiểm tra
+  final/              chỉ file dự định nộp
+  submission/         package kiểm tra
+</code></pre>
+<p>Trong <strong>phiên thi</strong>, workspace tương ứng phải đặt trong phạm vi repo/tài nguyên BTC cho phép và được hook theo dõi đúng. Đường dẫn tuyệt đối phải do đội chọn, không lấy ví dụ như đường dẫn có thật.</p>
+<p>Copy <code>config/gateway.example.json</code> thành <code>ops/gateway.json</code>; <code>config/permission.example.json</code> thành <code>ops/permission.json</code>. Chỉ dùng example payload trong luyện tập. Không chỉnh <code>.gitignore</code> của BTC tự động; fragment trong config chỉ là nội dung để người xem và hợp nhất nếu được phép.</p>
+<h2>3. Dùng skill không cần cài tự động</h2>
+<p>Mở <code>prompts/00_start.md</code>. Chỉ rõ đường dẫn toolkit thật cho agent, rồi đính kèm đề/luật/tài nguyên được phép. Ví dụ:</p>
+<pre><code class="language-text">Đọc skills/aitc-orchestrator/SKILL.md và references/contract.md của skill.
+Đây là đề thi: [đề đầy đủ].
+Đây là deadline và phạm vi tài nguyên được BTC xác nhận: [...].
+Trước tiên chỉ phân tích đề, đưa hướng giải và các điểm cần tôi duyệt.
+Không gọi AI khác ngoài Gateway BTC; chưa tự tạo media hoặc nộp bài.
+</code></pre>
+<p>Nếu agent không tự discover skill ở vị trí này, yêu cầu nó đọc file trực tiếp. Không tự chép skill vào thư mục hook bị BTC bảo vệ. Chỉ dùng cách tích hợp host mà BTC cho phép và đội đã kiểm thử.</p>
+<h2>4. Kiểm thử offline</h2>
+<p>Chạy tại thư mục toolkit:</p>
+<pre><code class="language-bash">python -m unittest discover -s tests -v
+</code></pre>
+<p>Báo cáo tạo gói: 48 tests đạt. Nếu máy đội thiếu FFmpeg, nhóm test media sẽ được skip: <strong>không xem test skip là đã kiểm thử media</strong>.</p>
+<h2>5. Gọi Gateway: dry-run trước</h2>
+<p>Tất cả lệnh dưới đây chạy tại thư mục toolkit; thay <code>WORKSPACE_ABS_PATH</code> bằng workspace thật. Đường dẫn payload bên trong dùng dấu <code>/</code>.</p>
+<pre><code class="language-bash">python runtime/gateway.py --root &quot;WORKSPACE_ABS_PATH&quot; --op text --payload requests/text.json
+</code></pre>
+<p>Không có <code>--live</code> thì chỉ kiểm tra cấu hình/payload, không HTTP, không tính phí. Dry-run <strong>không chứng minh</strong> key/model/endpoint hoạt động.</p>
+<p>Muốn thử live, người phụ trách phải:</p>
+<ul>
+<li>Xác minh scope chuẩn bị trước và endpoint/model BTC.</li>
+<li>Hoàn tất onboarding/hook, kiểm tra cả việc ghi lẫn gửi log; wrapper không thay hook.</li>
+<li>Xác minh model của chính coding host/critic chạy qua BTC.</li>
+<li>Đánh dấu đúng ba check trong permission.json; dùng mode practice hoặc competition. Competition cần <code>end_at</code> ISO có múi giờ, tương ứng T+120.</li>
+<li>Cấu hình <code>AITC_API_KEY</code> qua môi trường/secret manager local; <strong>không đưa vào chat, payload, code hoặc commit</strong>. Đặt <code>AITC_ENABLE_NETWORK=YES</code> trong process gọi helper.</li>
+<li>Thêm <code>--live</code> vào lệnh sau khi kiểm tra; không gửi API key cho người tạo toolkit.</li>
+</ul>
+<p>Các check dạng boolean là xác nhận của người, không phải công cụ tự chứng nhận việc BTC cho phép.</p>
+<h2>6. Thao tác ảnh/video/audio</h2>
+<pre><code class="language-bash">python runtime/gateway.py --root &quot;WORKSPACE_ABS_PATH&quot; --op image --payload requests/image.json --machine A --live
+python runtime/gateway.py --root &quot;WORKSPACE_ABS_PATH&quot; --op video-create --payload requests/video.json --machine A --live
+python runtime/gateway.py --root &quot;WORKSPACE_ABS_PATH&quot; --op video-status --job-id &quot;ACTUAL_JOB_ID&quot; --machine A --live
+python runtime/gateway.py --root &quot;WORKSPACE_ABS_PATH&quot; --op video-download --job-id &quot;ACTUAL_JOB_ID&quot; --machine A --live
+python runtime/gateway.py --root &quot;WORKSPACE_ABS_PATH&quot; --op tts --payload requests/tts.json --machine B --live
+python runtime/gateway.py --root &quot;WORKSPACE_ABS_PATH&quot; --op stt --payload requests/stt.json --attachment assets/voice.wav --machine B --live
+</code></pre>
+<p>Mỗi lần có thư mục <code>runs/A-...</code> hoặc <code>runs/B-...</code>, request và kết quả bổ sung. Tạo video xong phải dùng ID thật; status completed mới download. Poll theo khoảng tài liệu BTC hướng dẫn, không bắn liên tục. <code>video-create</code> có thể dùng <code>--attachment assets/start.png</code> cho input_reference; STT dùng upload multipart.</p>
+<p>Wrapper không tự làm image editing/reference workflow, subtitle alignment, dựng timeline nhiều track, nhạc hoặc mọi tham số nâng cao. Dùng công cụ biên tập không-AI hoặc mở rộng trong phạm vi BTC cho phép. Không tự thêm external API để lấp tính năng thiếu.</p>
+<h2>7. QA media</h2>
+<pre><code class="language-bash">python runtime/media.py --root &quot;WORKSPACE_ABS_PATH&quot; probe final/video.mp4
+python runtime/media.py --root &quot;WORKSPACE_ABS_PATH&quot; contact-sheet final/video.mp4 qa/contact-v1.png --frames 9
+python runtime/media.py --root &quot;WORKSPACE_ABS_PATH&quot; normalize-video assets/draft.mp4 final/video-v2.mp4 --width 1920 --height 1080 --fps 25
+</code></pre>
+<p>1920×1080/25fps chỉ là ví dụ lệnh, <strong>không phải thông số mặc định của bài thi</strong>. Lấy thông số từ đề. Normalize tạo file mới, không sửa bản cũ. Sau xử lý phải xem/nghe lại.</p>
+<h2>8. Cấu hình MCP local</h2>
+<pre><code class="language-bash">python runtime/configure_mcp.py --root &quot;WORKSPACE_ABS_PATH&quot;
+</code></pre>
+<p>Lệnh in cấu hình <code>mcpServers</code> với executable/path thật; không sửa file host. Chỉ thêm entry này ở chỗ host/BTC cho phép. Host khác có thể dùng schema khác; gói chưa kiểm thử tất cả host.</p>
+<p>MCP stdio chạy riêng được bằng:</p>
+<pre><code class="language-bash">python runtime/mcp_server.py --root &quot;WORKSPACE_ABS_PATH&quot;
+</code></pre>
+<p>Lệnh này chờ JSON-RPC từ client, không phải chat UI. Không trỏ root vào thư mục home hoặc toàn repo có secret/hook. Chọn một thư mục làm việc được kiểm soát. Không cài vào ChatGPT/Claude web để dùng trong phiên thi; host điều khiển cũng phải tuân thủ đường AI BTC.</p>
+<h2>9. Đóng băng và kiểm tra nộp</h2>
+<p>Sau khi người duyệt final:</p>
+<pre><code class="language-bash">python runtime/cli.py --root &quot;WORKSPACE_ABS_PATH&quot; freeze --directory final
+python runtime/cli.py --root &quot;WORKSPACE_ABS_PATH&quot; verify
+python runtime/cli.py --root &quot;WORKSPACE_ABS_PATH&quot; package --output submission/final.zip
+</code></pre>
+<p>Freeze không commit/push, không gửi gì cho BTC và không cung cấp dấu thời gian tin cậy độc lập. Package chỉ khi đề cho phép ZIP. Nếu đề cần MP4/JPG/TXT trực tiếp, nộp trực tiếp file đúng yêu cầu. Source/prompts trong repo BTC là phần riêng, không bị thay bằng ZIP media này. Ghi hình giám sát/video phản hồi xử lý theo đường nộp BTC yêu cầu, không ép vào attachment sản phẩm.</p>
+<p>Nếu đóng băng nhầm trong buổi luyện, tạo workspace luyện mới. Nếu xảy ra trong thi, dừng để đội trưởng xử lý đúng quy trình và thời gian; không xóa log/freeze lén để làm tiếp sau T+120.</p>
+</section><section id="reflection"><h1>Video nhận xét đề và giải thích cách làm</h1>
+<h2>Mục tiêu</h2>
+<p>Để người xem hiểu <strong>đề khó ở đâu, đội đã lựa chọn điều gì, vì sao, và ý nghĩa đó đã xuất hiện trong tác phẩm ra sao</strong>. Không chỉ kể thứ tự dùng API. Video không cứu được ý nghĩa chưa có trong artifact; cần sửa artifact trước freeze nếu còn giờ.</p>
+<h2>Bằng chứng tối thiểu</h2>
+<p>Đề; requirement map; concept được chốt; 3 quyết định quan trọng; bản final/ứng viên có version; quan sát lỗi/sửa; vai trò thành viên. AI log/source là nguồn bổ sung, không nhập token/secret và không yêu cầu mô hình xuất suy nghĩ bí mật.</p>
+<h2>Phân loại lời nói</h2>
+<table>
+<thead>
+<tr>
+  <th>Loại</th>
+  <th>Được nói thế nào</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>FACT</td>
+  <td>“Video có ba cảnh tương ứng ba bước”; chỉ vị trí.</td>
+</tr>
+<tr>
+  <td>TEAM RATIONALE</td>
+  <td>“Đội chọn ba bước vì...” dựa trên quyết định ghi nhận/xác nhận thật.</td>
+</tr>
+<tr>
+  <td>INTENDED IMPACT</td>
+  <td>“Chúng tôi muốn người xem có thể...” — mục đích, chưa phải kết quả đo.</td>
+</tr>
+<tr>
+  <td>LIMITATION</td>
+  <td>“Chưa kiểm thử với người xem thực tế”; “chất lượng cảnh cuối chưa đều”.</td>
+</tr>
+<tr>
+  <td>UNKNOWN</td>
+  <td>Không có dữ kiện thì không bổ sung một lý do đẹp.</td>
+</tr>
+</tbody>
+</table>
+<h2>Khung nói gợi ý khoảng 4–5 phút</h2>
+<ul>
+<li>0:00–0:30: đội hiểu đề yêu cầu gì, điểm khó thực tế.</li>
+<li>0:30–1:20: chọn cách giải nào và vì sao; nêu một phương án thật đã cân nhắc nếu có.</li>
+<li>1:20–2:40: cho thấy output/cảnh minh họa; giải thích hai quyết định chính.</li>
+<li>2:40–3:30: AI làm gì, người quyết định/kiểm tra phần nào.</li>
+<li>3:30–4:15: ý nghĩa với người nhận, giới hạn và bài học.</li>
+<li>Phần thời gian còn lại: chuyển cảnh/đóng, kiểm tra tổng 3–6 phút theo hướng dẫn BTC. [B1]</li>
+</ul>
+<p>Team nói theo đóng góp thực tế; không ép mọi người nói bằng nhau. Không quay tự nhận đã thử nghiệm xã hội/đã được cơ quan dùng khi chưa có bằng chứng. Không nói “BGK chắc chắn thích” hoặc “đây là điểm cộng”.</p>
+<h2>Thời điểm</h2>
+<p>Chạy <code>prompts/07_reflection.md</code> trong khoảng T+100–112 theo chính sách đội. Người duyệt đọc lại, xóa claim sai khỏi lời tổng kết (không xóa log AI), chốt cùng final. Sau thi quay bằng lời của team trên bản đã có; chưa có xác nhận BTC thì không gọi AI thêm để hoàn thiện rationale. Tách video này với file giám sát nguyên phiên.</p>
+</section><section id="test"><h1>Báo cáo kiểm thử kỹ thuật</h1>
+<p>Ngày: 05/10/2026. Kết quả thực thi: <strong>48 tests đạt, 0 lỗi, không có nhóm test bị skip trong môi trường tạo gói.</strong></p>
+<h2>Đã chạy</h2>
+<table>
+<thead>
+<tr>
+  <th>Nhóm</th>
+  <th style="text-align:right">Số test</th>
+  <th>Phạm vi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Workspace</td>
+  <td style="text-align:right">15</td>
+  <td>Đường dẫn, không ghi đè, snapshot/đổi file, permission, deadline, freeze, ZIP.</td>
+</tr>
+<tr>
+  <td>Gateway</td>
+  <td style="text-align:right">18</td>
+  <td>Allowlist/schema, chặn endpoint ngoài, network mock, phân loại 429, không retry POST, lưu text/ảnh, lọc key info, dry-run CLI.</td>
+</tr>
+<tr>
+  <td>MCP</td>
+  <td style="text-align:right">8</td>
+  <td>Handshake, init gate, 4 tools, tool call, error, không shell; một lượt stdio subprocess thực.</td>
+</tr>
+<tr>
+  <td>Media</td>
+  <td style="text-align:right">5</td>
+  <td>FFprobe/FFmpeg trên clip tổng hợp 1 giây: probe, contact sheet, normalize, guard.</td>
+</tr>
+<tr>
+  <td>Skill/config</td>
+  <td style="text-align:right">2</td>
+  <td>15 SKILL.md frontmatter/contract/heading/độ dài; JSON config.</td>
+</tr>
+</tbody>
+</table>
+<p>Python: 3.13.5. OS: Linux x86_64.
+ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers</p>
+<p>Lệnh: <code>python -m unittest discover -s tests -v</code>.</p>
+<h2>Chưa kiểm thử</h2>
+<ul>
+<li>Live API/key/model/path thực tế của BTC; không dùng API key của đội.</li>
+<li>Hook AI Log BTC có ghi/gửi đầy đủ mọi tác vụ của helper trong host thật.</li>
+<li>Tương thích trọn vẹn với từng Cursor/Cline/Codex/Gemini host; chưa có host do đội chọn.</li>
+<li>Benchmark chất lượng sáng tạo, hiệu quả prompt, điểm BGK hoặc thử nghiệm người dùng.</li>
+<li>Security audit độc lập hoặc mọi tình huống file decode/race condition. Server stdio là implementation nhỏ, không phải chứng nhận tương thích toàn bộ MCP.</li>
+</ul>
+<p>Mọi network trong test đều là mô phỏng. Media test dùng file tổng hợp local, không phải AI generation. Không dùng “48 tests đạt” để tự khẳng định “sẵn sàng thi chính thức”.</p>
+</section></main></body></html>

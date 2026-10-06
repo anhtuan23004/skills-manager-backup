@@ -1,0 +1,1 @@
+Dùng aitc-artifact-critic. Brief gốc [path], artifact [path/version]. Đánh giá đầu ra trước khi đọc rationale. Chỉ ghi đã thấy/đã nghe khi có quyền truy cập thật; thiếu evidence ghi UNVERIFIED. Trả status từng requirement, ba sửa ưu tiên và phần phải giữ.
