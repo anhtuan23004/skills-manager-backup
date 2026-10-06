@@ -1,0 +1,1 @@
+Dùng aitc-toolkit-evaluator. Chạy rehearsal đúng hai máy với brief luyện [path], 120+10 phút. Đánh dấu đây là luyện, không phải đề BTC. Đo thời điểm có bản nháp đủ, lỗi, số vòng sửa và chi phí thật. Không mang output luyện vào bài thi thật.

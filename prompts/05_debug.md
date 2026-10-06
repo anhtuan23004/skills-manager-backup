@@ -1,0 +1,1 @@
+Dùng aitc-systematic-debug. Lỗi [nội dung không secret], operation [ ], job/request ID [ ], lần cuối thành công [ ], còn [ ] phút. Phân loại lỗi và kiểm tra một giả thuyết. Không retry tự động POST media khi chưa biết tác vụ đã được tạo chưa; không đổi sang AI ngoài BTC.

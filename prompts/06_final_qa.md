@@ -1,0 +1,1 @@
+Dùng aitc-final-qa với chính file sẽ nộp. Đối chiếu requirement, metadata, nội dung, nguồn, prompt/source, log BTC. Không nói PASS từ lời agent hoặc metadata đơn thuần. Trả rõ lỗi, mục chưa kiểm chứng và quyết định cần người duyệt.

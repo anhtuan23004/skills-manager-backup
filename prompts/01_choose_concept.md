@@ -1,0 +1,1 @@
+Dùng aitc-concept-choice với brief đã duyệt. Đề xuất 3 hướng khác về cách giải/thông điệp, không chỉ style. Với mỗi hướng chỉ rõ yêu cầu đáp ứng, vai trò AI, ý nghĩa có thể thể hiện trong output, rủi ro và thời gian. Không đoán BGK thích gì. Đề xuất một hướng, chờ leader chọn và ghi decision log.

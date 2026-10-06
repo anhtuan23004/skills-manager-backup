@@ -1,0 +1,1 @@
+Dùng aitc-vietnam-context-review cho concept/artifact này. Tách requirement BTC khỏi khuyến nghị biên tập. Kiểm tra claim, tiếng Việt, bối cảnh, biểu tượng, giả bảo chứng và ý nghĩa thực sự xuất hiện trong output. Không ép đề thành tuyên truyền hoặc bài an ninh. Trả BLOCKER/FIX/OPTIONAL cùng vị trí.
